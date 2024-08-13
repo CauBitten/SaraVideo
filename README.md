@@ -6,7 +6,6 @@ Participantes do grupo:
   <li>Anthony Guerra</li>
   <li>Cauã Bittencourt</li>
   <li>João Bispo</li>
-  <li>Lucas Pereira</li>
   <li>Higor Cordeiro</li>
   <li>Vithor Souza</li>
 </ul>
