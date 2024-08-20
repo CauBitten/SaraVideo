@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
+from .models import Repositorio
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,6 +14,19 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+class RepositorioSerializer(serializers.ModelSerializer):
+    criador = serializers.ReadOnlyField(source='criador.username')
+    usuarios = serializers.SlugRelatedField(
+        many=True,
+        queryset=User.objects.all(),
+        slug_field='username'
+    )
+
+    class Meta:
+        model = Repositorio
+        fields = '__all__'
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -32,3 +46,5 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Gera o token para o usuário autenticado
         data = super().validate(attrs)
         return data
+    
+    
