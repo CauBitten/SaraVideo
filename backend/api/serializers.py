@@ -17,16 +17,27 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RepositorioSerializer(serializers.ModelSerializer):
-    criador = serializers.ReadOnlyField(source='criador.username')
-    usuarios = serializers.SlugRelatedField(
-        many=True,
-        queryset=User.objects.all(),
-        slug_field='username'
-    )
-
     class Meta:
         model = Repositorio
-        fields = '__all__'
+        fields = ['id', 'nome', 'descricao', 'criado_em', 'atualizado_em', 'criador', 'colaboradores']
+        read_only_fields = ['criado_em', 'atualizado_em']
+    
+    def create(self, validated_data):
+        colaboradores = validated_data.pop('colaboradores', [])
+        repositorio = super().create(validated_data)
+        repositorio.colaboradores.set(colaboradores)
+        return repositorio
+    
+    def validate(self, data):
+        # Garantir que o criador esteja incluído na lista de colaboradores
+        criador = data.get('criador')
+        colaboradores = data.get('colaboradores', [])
+        
+        if criador and criador not in colaboradores:
+            colaboradores.append(criador)
+        
+        data['colaboradores'] = colaboradores
+        return data
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):

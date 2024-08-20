@@ -16,14 +16,14 @@ class CreateUserView(generics.CreateAPIView):
 class CreateRepositorioView(generics.CreateAPIView):
     queryset = Repositorio.objects.all()
     serializer_class = RepositorioSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         # Salva o repositório com o criador
         repositorio = serializer.save(criador=self.request.user)
         
         # Adiciona o criador à lista de colaboradores
-        repositorio.usuarios.add(self.request.user)
+        repositorio.colaboradores.add(self.request.user)
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
