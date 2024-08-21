@@ -46,7 +46,7 @@ class PublicadoEm(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Referência ao usuário que publicou
 
     class Meta:
-        unique_together = ('video', 'repository')
+        unique_together = ('video', 'repositorio')
 
     def __str__(self):
         return f"{self.video.name} publicado em {self.repositorio.name}"
