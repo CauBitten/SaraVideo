@@ -37,7 +37,7 @@ class Analise(models.Model):
     final_violencia = models.TimeField(null=True, blank=True)
 
     def __str__(self):
-        return f"Análise de {self.video.name}"
+        return f"Análise de {self.video}"
 
 
 class PublicadoEm(models.Model):
@@ -49,4 +49,4 @@ class PublicadoEm(models.Model):
         unique_together = ('video', 'repositorio')
 
     def __str__(self):
-        return f"{self.video.name} publicado em {self.repositorio.name}"
+        return f"{self.video} publicado em {self.repositorio}"
