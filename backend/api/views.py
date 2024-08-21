@@ -1,9 +1,15 @@
 from django.contrib.auth.models import User
 from rest_framework import generics, viewsets
-from .serializers import UserSerializer, RepositorioSerializer, CustomTokenObtainPairSerializer
+from .serializers import (
+    UserSerializer,
+    RepositorioSerializer,
+    CustomTokenObtainPairSerializer,
+    VideoSerializer,
+    AnaliseSerializer,
+    PublicadoEmSerializer)
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .models import Repositorio
+from .models import Repositorio, Video, Analise, PublicadoEm
 
 
 # Create your views here.
@@ -31,5 +37,14 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 # Video views
+
+class VideosAPIView(generics.ListCreateAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+
+
+class VideoAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
 
 
