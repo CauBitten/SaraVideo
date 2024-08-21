@@ -28,3 +28,8 @@ class CreateRepositorioView(generics.CreateAPIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+# Video views
+
+
