@@ -50,3 +50,4 @@ class PublicadoEm(models.Model):
 
     def __str__(self):
         return f"{self.video} publicado em {self.repositorio}"
+

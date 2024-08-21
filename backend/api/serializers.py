@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
-from .models import Repositorio
+from .models import Repositorio, Analise, Video, PublicadoEm
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -57,5 +57,32 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Gera o token para o usuário autenticado
         data = super().validate(attrs)
         return data
-    
-    
+
+
+class VideoSerializer(serializers.ModelSerializer):
+    repositorio = RepositorioSerializer(read_only=True)
+    publicado_por = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Video
+        fields = ['id', 'titulo', 'duracao', 'arquivo', 'repositorio', 'data_publicacao', 'publicado_por']
+
+
+class AnaliseSerializer(serializers.ModelSerializer):
+    video = VideoSerializer(read_only=True)
+
+    class Meta:
+        model = Analise
+        fields = ['id', 'video', 'violencia_ocorreu', 'violencia_contra_mulher', 'duracao_violencia',
+                  'comeco_violencia', 'final_violencia']
+
+
+class PublicadoEmSerializer(serializers.ModelSerializer):
+    video = VideoSerializer(read_only=True)
+    repositorio = RepositorioSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = PublicadoEm
+        fields = ['id', 'video', 'repositorio', 'user']
+        unique_together = ('video', 'repositorio', 'user')
