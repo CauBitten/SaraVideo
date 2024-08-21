@@ -39,15 +39,3 @@ class Analise(models.Model):
     def __str__(self):
         return f"Análise de {self.video}"
 
-
-class PublicadoEm(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)  # Referência ao vídeo
-    repositorio = models.ForeignKey(Repositorio, on_delete=models.CASCADE)  # Referência ao repositório
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Referência ao usuário que publicou
-
-    class Meta:
-        unique_together = ('video', 'repositorio')
-
-    def __str__(self):
-        return f"{self.video} publicado em {self.repositorio}"
-
