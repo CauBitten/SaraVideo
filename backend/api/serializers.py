@@ -76,13 +76,3 @@ class AnaliseSerializer(serializers.ModelSerializer):
         fields = ['id', 'video', 'violencia_ocorreu', 'violencia_contra_mulher', 'duracao_violencia',
                   'comeco_violencia', 'final_violencia']
 
-
-class PublicadoEmSerializer(serializers.ModelSerializer):
-    video = VideoSerializer(read_only=True)
-    repositorio = RepositorioSerializer(read_only=True)
-    user = UserSerializer(read_only=True)
-
-    class Meta:
-        model = PublicadoEm
-        fields = ['id', 'video', 'repositorio', 'user']
-        unique_together = ('video', 'repositorio', 'user')
