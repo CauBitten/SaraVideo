@@ -10,6 +10,6 @@ urlpatterns = [
     path('user/register/', CreateUserView.as_view(), name="register"),
     path('token/', CustomTokenObtainPairView.as_view(), name="get_token"),
     path('token/refresh/', TokenRefreshView.as_view(), name="refresh"),
-    path('videos/<int : pk>', VideoAPIView.as_view(), name="videos"),
-    path('video/', VideosAPIView.as_view(), name="video"),
+    path('videos/<int:pk>', VideoAPIView.as_view(), name="videos"),
+    path('videos/', VideosAPIView.as_view(), name="video"),
 ]
