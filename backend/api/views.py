@@ -5,11 +5,10 @@ from .serializers import (
     RepositorioSerializer,
     CustomTokenObtainPairSerializer,
     VideoSerializer,
-    AnaliseSerializer,
-    PublicadoEmSerializer)
+    AnaliseSerializer)
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .models import Repositorio, Video, Analise, PublicadoEm
+from .models import Repositorio, Video, Analise
 
 
 # Create your views here.
@@ -27,7 +26,7 @@ class CreateRepositorioView(generics.CreateAPIView):
     def perform_create(self, serializer):
         # Salva o repositório com o criador
         repositorio = serializer.save(criador=self.request.user)
-        
+
         # Adiciona o criador à lista de colaboradores
         repositorio.colaboradores.add(self.request.user)
 

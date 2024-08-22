@@ -5,6 +5,7 @@ import Register from "./pages/Register"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
+import CreateRepo from "./pages/CreateRepo"
 
 function Logout() {
   localStorage.clear()
@@ -24,7 +25,7 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <Home />
+              <CreateRepo />
             </ProtectedRoute>
           }
         />

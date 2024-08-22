@@ -3,7 +3,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import "../styles/Form.css"
 
-function RegisterForm({ route, method }) {
+function RegisterForm({ route }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");

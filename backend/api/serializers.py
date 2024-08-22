@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth import authenticate
-from .models import Repositorio, Analise, Video, PublicadoEm
+from .models import Repositorio, Analise, Video
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,22 +17,25 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RepositorioSerializer(serializers.ModelSerializer):
+    colaboradores = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True, required=False)
+    
     class Meta:
         model = Repositorio
         fields = ['id', 'nome', 'descricao', 'criado_em', 'atualizado_em', 'criador', 'colaboradores']
-        read_only_fields = ['criado_em', 'atualizado_em']
-    
+        read_only_fields = ['criado_em', 'atualizado_em', 'criador']
+
     def create(self, validated_data):
         colaboradores = validated_data.pop('colaboradores', [])
         repositorio = super().create(validated_data)
-        repositorio.colaboradores.set(colaboradores)
+        if colaboradores:
+            repositorio.colaboradores.set(colaboradores)
         return repositorio
-    
+
     def validate(self, data):
-        # Garantir que o criador esteja incluído na lista de colaboradores
-        criador = data.get('criador')
+        criador = self.context['request'].user
         colaboradores = data.get('colaboradores', [])
-        
+
+        # Garantir que o criador esteja incluído na lista de colaboradores
         if criador and criador not in colaboradores:
             colaboradores.append(criador)
         

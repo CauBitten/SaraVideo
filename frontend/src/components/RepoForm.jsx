@@ -1,12 +1,11 @@
 import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css"
 
-function LoginForm({ route }) {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+function RepoForm({ route }) {
+    const [nome, setNome] = useState("");
+    const [descricao, setDescricao] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -15,9 +14,7 @@ function LoginForm({ route }) {
         e.preventDefault();
 
         try {
-            const res = await api.post(route, { username, password })
-            localStorage.setItem(ACCESS_TOKEN, res.data.access);
-            localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+            const res = await api.post(route, { nome, descricao });
             navigate("/")
         } catch (error) {
             alert(error)
@@ -28,26 +25,26 @@ function LoginForm({ route }) {
 
     return (
         <form onSubmit={handleSubmit} className="form-container">
-            <h1>Login</h1>
+            <h1>Criar Repositório</h1>
             <input
                 className="form-input"
                 type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+                placeholder="Nome do repositório"
             />
             <input
                 className="form-input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                type="text"
+                value={descricao}
+                onChange={(e) => setDescricao(e.target.value)}
+                placeholder="Descrição do repositório"
             />
             <button className="form-button" type="submit">
-                Login
+                Criar
             </button>
         </form>
     );
 }
 
-export default LoginForm
+export default RepoForm

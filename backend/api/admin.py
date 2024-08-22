@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Repositorio, Video, PublicadoEm, Analise
+from .models import Repositorio, Video, Analise
 
 
 @admin.register(Repositorio)
@@ -11,11 +11,6 @@ class RepositorioAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'duracao', 'arquivo', 'publicado_por', 'data_publicacao')
-
-
-@admin.register(PublicadoEm)
-class PublicadoEmAdmin(admin.ModelAdmin):
-    list_display = ('video', 'repositorio', 'user')
 
 
 @admin.register(Analise)
