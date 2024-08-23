@@ -5,7 +5,7 @@ import Register from "./pages/Register"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import CreateRepo from "./pages/CreateRepo"
-import UserRepos from "./components/UserRepos"
+import Home from "./pages/Home"
 
 function Logout() {
   localStorage.clear()
@@ -25,14 +25,14 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <CreateRepo />
+              <Home />
             </ProtectedRoute>
           }
         />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="/repositorios" element={<UserRepos />} />
+        <Route path="/criar-repo" element={<CreateRepo />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
