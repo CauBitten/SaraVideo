@@ -1,53 +1,66 @@
-import { useState } from "react";
-import api from "../api";
+import React, { useState } from "react";
+import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css"
+import "../styles/Form.css";
+
+const { Title, Link } = Typography;
 
 function LoginForm({ route }) {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        setLoading(true);
-        e.preventDefault();
+  const handleSubmit = async (values) => {
+    setLoading(true);
 
-        try {
-            const res = await api.post(route, { username, password })
-            localStorage.setItem(ACCESS_TOKEN, res.data.access);
-            localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            navigate("/")
-        } catch (error) {
-            alert(error)
-        } finally {
-            setLoading(false)
-        }
-    };
+    try {
+      const res = await api.post(route, { username: values.username, password: values.password });
+      localStorage.setItem(ACCESS_TOKEN, res.data.access);
+      localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+      navigate("/");
+    } catch (error) {
+      alert(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-        <form onSubmit={handleSubmit} className="form-container">
-            <h1>Login</h1>
-            <input
-                className="form-input"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-            />
-            <input
-                className="form-input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-            />
-            <button className="form-button" type="submit">
-                Login
-            </button>
-        </form>
-    );
+  return (
+    <div className="login-container">
+      <div className="login-form">
+        <Title level={2} className="login-title">SaraVideo Manager</Title>
+        <Form
+          name="login"
+          initialValues={{ remember: true }}
+          onFinish={handleSubmit}
+          className="login-form"
+        >
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
+            <Input placeholder="Username" className="login-input" />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password placeholder="Senha" className="login-input" />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={loading} className="login-button">
+              Login
+            </Button>
+          </Form.Item>
+        </Form>
+        <Link href="/register" className="login-link">Não possui uma conta? clique aqui para se cadastrar.</Link>
+      </div>
+      <div className="login-background"></div>
+    </div>
+  );
 }
 
-export default LoginForm
+export default LoginForm;

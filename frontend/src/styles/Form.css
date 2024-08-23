@@ -1,36 +1,79 @@
+/* Estilo para o contêiner principal */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.row {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100vh;
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col:first-child {
+  flex: 5; 
+}
+
+.col:last-child {
+  flex: 5;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 800px; /* Limita a altura máxima da imagem */
+  width: 100%;
+  height: 100%; 
+}
+
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-  }
-  
-  .form-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .form-button {
-    width: 95%;
-    padding: 10px;
-    margin: 20px 0;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .form-button:hover {
-    background-color: #0056b3;
-  }
+  max-width: 100%; /* Garante que o formulário não ultrapasse a largura disponível da coluna */
+  width: 300px; /* Define uma largura fixa para o formulário */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-container .ant-form-item {
+  margin-bottom: 15px;
+}
+
+.form-container .ant-input, .form-container .ant-input-password {
+  height: 40px;
+  border-radius: 5px;
+}
+
+.form-container .ant-btn-primary {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.form-container p {
+  text-align: center;
+}
+
+.form-container a {
+  color: #1890ff;
+}
