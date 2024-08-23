@@ -37,6 +37,13 @@ class ListUserRepositorioView(generics.ListAPIView):
 
     def get_queryset(self):
         return Repositorio.objects.filter(colaboradores=self.request.user)
+    
+
+class RepositorioDetailView(generics.RetrieveAPIView):
+    queryset = Repositorio.objects.all()
+    serializer_class = RepositorioSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):

@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import CreateRepo from "./pages/CreateRepo"
 import Home from "./pages/Home"
+import Repositorio from "./components/Repositorio"
 
 function Logout() {
   localStorage.clear()
@@ -33,6 +34,7 @@ function App() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
         <Route path="/criar-repo" element={<CreateRepo />} />
+        <Route path="/repositorios/:id" element={<Repositorio />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>

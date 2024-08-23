@@ -31,7 +31,7 @@ function UserRepos() {
             <ul>
                 {repositorios.map((repo) => (
                     <li key={repo.id}>
-                        <Link to={`/repositorios/${repo.criador}/${repo.nome}`}>
+                        <Link to={`/repositorios/${repo.id}`}>
                             {repo.nome}
                         </Link>
                     </li>

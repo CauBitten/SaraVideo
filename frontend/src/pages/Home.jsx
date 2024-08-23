@@ -11,7 +11,6 @@ function Home() {
 
     return (
         <div>
-            <h1>Meus Repositórios</h1>
             <UserRepos /> 
             <button onClick={handleCreateRepoClick}>
                 Criar Novo Repositório
