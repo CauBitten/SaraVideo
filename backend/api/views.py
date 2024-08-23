@@ -31,6 +31,14 @@ class CreateRepositorioView(generics.CreateAPIView):
         repositorio.colaboradores.add(self.request.user)
 
 
+class ListUserRepositorioView(generics.ListAPIView):
+    serializer_class = RepositorioSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Repositorio.objects.filter(colaboradores=self.request.user)
+
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
