@@ -27,9 +27,9 @@ function LoginForm({ route }) {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <Title level={2} className="login-title">SaraVideo Manager</Title>
+    <div>
+      <div>
+        <Title level={2}>SaraVideo Manager</Title>
         <Form
           name="login"
           initialValues={{ remember: true }}
@@ -56,9 +56,9 @@ function LoginForm({ route }) {
             </Button>
           </Form.Item>
         </Form>
-        <Link href="/register" className="login-link">Não possui uma conta? clique aqui para se cadastrar.</Link>
+        <Link href="/register">Não possui uma conta? clique aqui para se cadastrar.</Link>
       </div>
-      <div className="login-background"></div>
+      <div className="background"></div>
     </div>
   );
 }

@@ -1,58 +1,70 @@
-import { useState } from "react";
-import api from "../api";
+import React, { useState } from "react";
+import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import "../styles/Form.css"
+import api from "../api";
+import "../styles/Form.css";
+
+const { Title, Link } = Typography;
 
 function RegisterForm({ route }) {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (values) => {
         setLoading(true);
-        e.preventDefault();
 
         try {
-            const res = await api.post(route, { username, password, email })
-            navigate("/login")
+            await api.post(route, { username: values.username, password: values.password, email: values.email });
+            navigate("/login");
         } catch (error) {
-            alert(error)
+            alert(error);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="form-container">
-            <h1>Register</h1>
-            <input
-                className="form-input"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-            />
-            <input
-                className="form-input"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="E-mail"
-            />
-            <input
-                className="form-input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-            />
-            <button className="form-button" type="submit">
-                Register
-            </button>
-        </form>
+        <div className="container">
+            <div>
+                <Title level={2}>Register</Title>
+                <Form
+                    name="register"
+                    initialValues={{ remember: true }}
+                    onFinish={handleSubmit}
+                >
+                    <Form.Item
+                        name="username"
+                        rules={[{ required: true, message: "Please input your username!" }]}
+                    >
+                        <Input placeholder="Username" className="ant-input" />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="email"
+                        rules={[{ required: true, message: "Please input your email!" }]}
+                    >
+                        <Input type="email" placeholder="E-mail" className="ant-input" />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="password"
+                        rules={[{ required: true, message: "Please input your password!" }]}
+                    >
+                        <Input.Password placeholder="Password" className="ant-input-password" />
+                    </Form.Item>
+
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" loading={loading} className="ant-btn-primary">
+                            Register
+                        </Button>
+                    </Form.Item>
+                    <p>
+                        <Link href="/login" className="form-link">Already have an account? Click here to login.</Link>
+                    </p>
+                </Form>
+            </div>
+        </div>
     );
 }
 
-export default RegisterForm
+export default RegisterForm;
