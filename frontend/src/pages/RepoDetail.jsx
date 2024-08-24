@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Repositorio from "../components/Repositorio";
 import DeleteRepositoryButton from "../components/DeleteRepoButton";
 import api from "../api";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function RepoDetail() {
     const { id } = useParams();
@@ -16,7 +16,7 @@ function RepoDetail() {
                 setRepositorio(response.data);
             } catch (error) {
                 console.error("Erro ao buscar repositório:", error);
-                setRepositorio(null); // Define como null se houver erro
+                setRepositorio(null);
             } finally {
                 setLoading(false);
             }
@@ -36,9 +36,9 @@ function RepoDetail() {
     return (
         <div>
             <Repositorio />
-            {repositorio && (
-                <DeleteRepositoryButton repositoryId={id} />
-            )}
+            <Link to={`/repositorios/${id}/edit`}>
+                <button>Editar Repositório</button>
+            </Link>
         </div>
     );
 }

@@ -79,6 +79,12 @@ class RepositorioDeleteView(generics.DestroyAPIView):
         
         # Excluir o repositório
         return super().delete(request, *args, **kwargs)
+    
+
+class RepositorioUpdateView(generics.UpdateAPIView):
+    queryset = Repositorio.objects.all()
+    serializer_class = RepositorioSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
