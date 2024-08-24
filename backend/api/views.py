@@ -1,3 +1,7 @@
+import os
+import shutil
+from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from .serializers import (
@@ -51,6 +55,30 @@ class RepositorioDeleteView(generics.DestroyAPIView):
     queryset = Repositorio.objects.all()
     serializer_class = RepositorioSerializer
     permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        # Obter o repositório a ser excluído
+        repository = self.get_object()
+        
+        # Obter todos os vídeos associados a este repositório
+        videos = Video.objects.filter(repositorio=repository)
+        
+        # Excluir os arquivos de vídeo e suas pastas
+        for video in videos:
+            file_path = video.arquivo.path
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        
+        # Excluir os registros de vídeo do banco de dados
+        videos.delete()
+        
+        # Excluir a pasta do repositório se ela existir
+        repository_path = os.path.join(settings.MEDIA_ROOT, str(repository.id))
+        if os.path.isdir(repository_path):
+            shutil.rmtree(repository_path)
+        
+        # Excluir o repositório
+        return super().delete(request, *args, **kwargs)
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
