@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import api from "../api";
 
 function Repositorio() {
@@ -32,8 +32,14 @@ function Repositorio() {
 
     return (
         <div>
-            <h1>{repositorio.nome}</h1>
-            <p>{repositorio.descricao}</p>
+            <h1>Detalhes do Repositório - {repositorio.nome}</h1>
+            <p>Descrição: {repositorio.descricao}</p>
+            <p>Criado em: {new Date(repositorio.criado_em).toLocaleDateString()}</p>
+
+            {/* Botão para redirecionar ao upload de vídeo */}
+            <Link to={`/repositorios/${id}/upload`}>
+                <button>Upload Video</button>
+            </Link>
         </div>
     );
 }

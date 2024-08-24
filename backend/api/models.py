@@ -1,6 +1,12 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils.text import slugify
+import os
+
+def upload_to(instance, filename):
+    filename = os.path.basename(filename)
+    return os.path.join(str(instance.repositorio.id), filename)
 
 
 # Create your models here.
@@ -17,11 +23,11 @@ class Repositorio(models.Model):
 
 
 class Video(models.Model):
+    repositorio = models.ForeignKey(Repositorio, related_name='videos', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=255)
+    arquivo = models.FileField(upload_to=upload_to)
     duracao = models.DurationField()
-    arquivo = models.FileField(upload_to='videos/')
-    repositorio = models.ForeignKey(Repositorio, on_delete=models.CASCADE, related_name='videos')
-    data_publicacao = models.DateTimeField(auto_now_add=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
     publicado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name='videos_publicados')
 
     def __str__(self):
