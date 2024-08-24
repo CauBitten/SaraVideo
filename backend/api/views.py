@@ -47,6 +47,12 @@ class RepositorioDetailView(generics.RetrieveAPIView):
     lookup_field = 'id'
 
 
+class RepositorioDeleteView(generics.DestroyAPIView):
+    queryset = Repositorio.objects.all()
+    serializer_class = RepositorioSerializer
+    permission_classes = [IsAuthenticated]
+
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
