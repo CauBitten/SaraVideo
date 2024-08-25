@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Typography } from "antd";
+import { useState } from "react";
+import { Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
 
-const { Title, Link } = Typography;
-
-function LoginForm({ route }) {
+function LoginForm() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -15,7 +13,10 @@ function LoginForm({ route }) {
     setLoading(true);
 
     try {
-      const res = await api.post(route, { username: values.username, password: values.password });
+      const res = await api.post("/api/token/", {
+        username: values.username,
+        password: values.password,
+      });
       localStorage.setItem(ACCESS_TOKEN, res.data.access);
       localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
       navigate("/");
@@ -28,37 +29,47 @@ function LoginForm({ route }) {
 
   return (
     <div>
-      <div>
-        <Title level={2}>SaraVideo Manager</Title>
-        <Form
-          name="login"
-          initialValues={{ remember: true }}
-          onFinish={handleSubmit}
-          className="login-form"
+      <h1 className="titulo-form">Sign In</h1>
+      <Form
+        name="login"
+        initialValues={{ remember: true }}
+        onFinish={handleSubmit}
+        className="login-form"
+      >
+        <label className="label">EMAIL OR USERNAME</label>
+        <Form.Item
+          className="login-input"
+          name="username"
+          rules={[{ required: true, message: "Please input your username!" }]}
         >
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
-          >
-            <Input placeholder="Username" className="login-input" />
-          </Form.Item>
+          <Input placeholder="Your email or username" className="input-form" />
+        </Form.Item>
+        <label className="label">PASSWORD</label>
+        <Form.Item
+          className="login-input"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password placeholder="Your password" className="input-form" />
+        </Form.Item>
 
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password placeholder="Senha" className="login-input" />
-          </Form.Item>
-
+        <div className="botoes-login">
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={loading} className="login-button">
-              Login
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              className="login-button"
+            >
+              Sign In
             </Button>
           </Form.Item>
-        </Form>
-        <Link href="/register">Não possui uma conta? clique aqui para se cadastrar.</Link>
-      </div>
-      <div className="background"></div>
+          <a className="botao-cadastrar" href="/register">
+            Don’t have an account? Click<br></br>
+            here to sign up.
+          </a>
+        </div>
+      </Form>
     </div>
   );
 }

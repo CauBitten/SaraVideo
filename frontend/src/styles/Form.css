@@ -1,5 +1,22 @@
 /* Estilo para o contêiner principal */
-body, html {
+
+@font-face {
+  font-family: "DM Sans Bold";
+  src: url(../../public/fonts/DMSans_18pt-Bold.woff);
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url(../../public/fonts/DMSans_18pt-Regular.woff);
+}
+
+@font-face {
+  font-family: "DM Sans Medium";
+  src: url(../../public/fonts/DMSans_18pt-Medium.woff);
+}
+
+body,
+html {
   height: 100%;
   margin: 0;
   font-family: Arial, sans-serif;
@@ -7,8 +24,6 @@ body, html {
 
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100%;
 }
 
@@ -22,12 +37,10 @@ body, html {
 .col {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .col:first-child {
-  flex: 5; 
+  flex: 5;
 }
 
 .col:last-child {
@@ -36,9 +49,9 @@ body, html {
 
 .image {
   max-width: 100%;
-  max-height: 800px; /* Limita a altura máxima da imagem */
+  max-height: 100vh; /* Limita a altura máxima da imagem */
   width: 100%;
-  height: 100%; 
+  height: 100%;
 }
 
 .form-container {
@@ -59,7 +72,8 @@ body, html {
   margin-bottom: 15px;
 }
 
-.form-container .ant-input, .form-container .ant-input-password {
+.form-container .ant-input,
+.form-container .ant-input-password {
   height: 40px;
   border-radius: 5px;
 }
@@ -76,4 +90,71 @@ body, html {
 
 .form-container a {
   color: #1890ff;
+}
+
+.titulo-container {
+}
+
+.container-login {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.label {
+  font-family: "DM Sans Bold", sans-serif;
+  color: #1e0e62;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+}
+
+.login-input {
+  margin-top: 0.4375rem;
+  width: 29.375rem;
+}
+
+.titulo-login {
+  font-family: "DM Sans Bold", sans-serif;
+  position: absolute;
+  top: 28px;
+  left: 64px;
+  color: #1e0e62;
+  font-size: 1.5rem;
+}
+
+.titulo-form {
+  font-family: "DM Sans Bold", sans-serif;
+  color: #1e0e62;
+  font-size: 2.625rem;
+}
+
+.input-form {
+  border-radius: 50px;
+  font-size: 20px;
+  height: 60px;
+  font-family: "DM Sans Medium", sans-serif;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.botoes-login {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.5rem;
+}
+
+.botao-cadastrar {
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  color: #a1a1b0;
+  text-decoration: none;
+}
+
+.login-button {
+  font-family: "DM Sans Medium", sans-serif;
+  font-size: 1.125rem;
+  padding: 1.0625rem 4.8125rem;
+  border-radius: 50px;
+  background-color: #25dac5;
+  width: 13.125rem;
+  height: 3.75rem;
 }
