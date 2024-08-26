@@ -4,9 +4,9 @@ import HomeImage from "../static/home.jpeg";
 function Login() {
   return (
     <div className="container">
-      <h1 className="titulo-login">SaraVideo Manager</h1>
+      <h1 className="title">SaraVideo Manager</h1>
       <div className="row">
-        <div className="col container-login">
+        <div className="col container-form">
           <LoginForm />
         </div>
         <div className="col">

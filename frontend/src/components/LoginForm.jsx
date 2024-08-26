@@ -38,33 +38,35 @@ function LoginForm() {
       >
         <label className="label">EMAIL OR USERNAME</label>
         <Form.Item
-          className="login-input"
+          className="form-input"
           name="username"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input placeholder="Your email or username" className="input-form" />
         </Form.Item>
+
         <label className="label">PASSWORD</label>
         <Form.Item
-          className="login-input"
+          className="form-input"
           name="password"
           rules={[{ required: true, message: "Please input your password!" }]}
         >
           <Input.Password placeholder="Your password" className="input-form" />
         </Form.Item>
 
-        <div className="botoes-login">
+        <div className="buttons">
           <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
               loading={loading}
-              className="login-button"
+              className="button"
             >
               Sign In
             </Button>
           </Form.Item>
-          <a className="botao-cadastrar" href="/register">
+
+          <a className="link" href="/register">
             Don’t have an account? Click<br></br>
             here to sign up.
           </a>

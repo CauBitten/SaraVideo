@@ -24,46 +24,59 @@ function RegisterForm({ route }) {
     };
 
     return (
-        <div className="container">
-            <div>
-                <Title level={2}>Register</Title>
-                <Form
-                    name="register"
-                    initialValues={{ remember: true }}
-                    onFinish={handleSubmit}
-                >
-                    <Form.Item
-                        name="username"
-                        rules={[{ required: true, message: "Please input your username!" }]}
-                    >
-                        <Input placeholder="Username" className="ant-input" />
-                    </Form.Item>
+        <div>
+      <h1 className="titulo-form">Register</h1>
+      <Form
+        name="register"
+        initialValues={{ remember: true }}
+        onFinish={handleSubmit}
+        className="login-form"
+      >
+        <label className="label">USERNAME</label>
+        <Form.Item
+          className="form-input"
+          name="username"
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <Input placeholder="Your username" className="input-form" />
+        </Form.Item>
 
-                    <Form.Item
-                        name="email"
-                        rules={[{ required: true, message: "Please input your email!" }]}
-                    >
-                        <Input type="email" placeholder="E-mail" className="ant-input" />
-                    </Form.Item>
+        <label className="label">E-MAIL</label>
+        <Form.Item
+          className="form-input"
+          name="email"
+          rules={[{ required: true, message: "Please input your e-mail!" }]}
+        >
+          <Input placeholder="Your e-mail" className="input-form" />
+        </Form.Item>
 
-                    <Form.Item
-                        name="password"
-                        rules={[{ required: true, message: "Please input your password!" }]}
-                    >
-                        <Input.Password placeholder="Password" className="ant-input-password" />
-                    </Form.Item>
+        <label className="label">PASSWORD</label>
+        <Form.Item
+          className="form-input"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password placeholder="Your password" className="input-form" />
+        </Form.Item>
 
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit" loading={loading} className="ant-btn-primary">
-                            Register
-                        </Button>
-                    </Form.Item>
-                    <p>
-                        <Link href="/login" className="form-link">Already have an account? Click here to login.</Link>
-                    </p>
-                </Form>
-            </div>
+        <div className="buttons">
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              className="button"
+            >
+              Register
+            </Button>
+          </Form.Item>
+          <a className="link" href="/login">
+            Already have an account?<br></br>
+            Click here to login.
+          </a>
         </div>
+      </Form>
+    </div>
     );
 }
 

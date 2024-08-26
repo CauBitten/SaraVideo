@@ -2,17 +2,17 @@
 
 @font-face {
   font-family: "DM Sans Bold";
-  src: url(../../public/fonts/DMSans_18pt-Bold.woff);
+  src: url(/fonts/DMSans_18pt-Bold.woff);
 }
 
 @font-face {
   font-family: "DM Sans";
-  src: url(../../public/fonts/DMSans_18pt-Regular.woff);
+  src: url(/fonts/DMSans_18pt-Regular.woff);
 }
 
 @font-face {
   font-family: "DM Sans Medium";
-  src: url(../../public/fonts/DMSans_18pt-Medium.woff);
+  src: url(/fonts/DMSans_18pt-Medium.woff);
 }
 
 body,
@@ -49,14 +49,14 @@ html {
 
 .image {
   max-width: 100%;
-  max-height: 100vh; /* Limita a altura máxima da imagem */
+  max-height: 100vh; 
   width: 100%;
   height: 100%;
 }
 
 .form-container {
-  max-width: 100%; /* Garante que o formulário não ultrapasse a largura disponível da coluna */
-  width: 300px; /* Define uma largura fixa para o formulário */
+  max-width: 100%;
+  width: 300px; 
   padding: 20px;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
@@ -92,14 +92,12 @@ html {
   color: #1890ff;
 }
 
-.titulo-container {
-}
-
-.container-login {
+.container-form {
   display: grid;
   justify-content: center;
   align-items: center;
 }
+
 .label {
   font-family: "DM Sans Bold", sans-serif;
   color: #1e0e62;
@@ -107,12 +105,12 @@ html {
   letter-spacing: 1px;
 }
 
-.login-input {
+.form-input {
   margin-top: 0.4375rem;
   width: 29.375rem;
 }
 
-.titulo-login {
+.title {
   font-family: "DM Sans Bold", sans-serif;
   position: absolute;
   top: 28px;
@@ -136,20 +134,20 @@ html {
   padding-right: 1.5rem;
 }
 
-.botoes-login {
+.buttons {
   display: flex;
   justify-content: space-between;
   margin-top: 3.5rem;
 }
 
-.botao-cadastrar {
+.link {
   font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   color: #a1a1b0;
   text-decoration: none;
 }
 
-.login-button {
+.button {
   font-family: "DM Sans Medium", sans-serif;
   font-size: 1.125rem;
   padding: 1.0625rem 4.8125rem;
