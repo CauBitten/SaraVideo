@@ -65,13 +65,19 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = ['id', 'repositorio', 'titulo', 'arquivo', 'duracao', 'criado_em', 'publicado_por']
-        read_only_fields = ['criado_em', 'publicado_por', 'repositorio']
+        fields = ['id', 'repositorio', 'titulo', 'arquivo', 'duracao', 'criado_em', 'publicado_por', 'thumbnail']
+        read_only_fields = ['criado_em', 'publicado_por', 'repositorio', 'thumbnail']
 
     def create(self, validated_data):
-        repository = self.context['repository']
-        validated_data['repositorio'] = repository
-        validated_data['publicado_por'] = self.context['request'].user
+        request = self.context.get('request')
+        repository = self.context.get('repository')
+        
+        if request is not None:
+            validated_data['publicado_por'] = request.user
+
+        if repository is not None:
+            validated_data['repositorio'] = repository
+
         return super().create(validated_data)
 
 
