@@ -5,7 +5,6 @@ import "../styles/Form.css";
 
 function VideoUploadForm({ route }) {
     const [title, setTitle] = useState("");
-    const [duration, setDuration] = useState("");
     const [videoFile, setVideoFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -18,7 +17,7 @@ function VideoUploadForm({ route }) {
         e.preventDefault();
         setLoading(true);
 
-        if (!videoFile || !title || !duration) {
+        if (!videoFile || !title) {
             alert('Please fill all the fields and select a video file');
             setLoading(false);
             return;
@@ -27,7 +26,6 @@ function VideoUploadForm({ route }) {
         const formData = new FormData();
         formData.append('titulo', title);
         formData.append('arquivo', videoFile);
-        formData.append('duracao', duration);
 
         try {
             await api.post(route, formData, {
@@ -54,13 +52,6 @@ function VideoUploadForm({ route }) {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
-            />
-            <input
-                className="form-input"
-                type="text"
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
-                placeholder="Duration (e.g., 00:05:30)"
             />
             <input
                 className="form-input"
