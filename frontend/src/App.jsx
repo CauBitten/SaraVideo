@@ -9,6 +9,7 @@ import Home from "./pages/Home"
 import RepoDetail from "./pages/RepoDetail"
 import Upload from "./pages/Upload"
 import EditRepo from "./pages/EditRepo"
+import UserEdit from "./pages/UserEdit"
 
 function Logout() {
   localStorage.clear()
@@ -39,6 +40,7 @@ function App() {
         <Route path="/repositorios/:id" element={<RepoDetail />} />
         <Route path="/repositorios/:id/upload" element={<Upload />} />
         <Route path="/repositorios/:id/edit" element={<EditRepo />} />
+        <Route path="/editar-usuario" element={<UserEdit />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>

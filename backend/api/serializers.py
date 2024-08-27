@@ -15,6 +15,19 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
+    def update(self, instance, validated_data):
+        original_username = instance.username
+
+        instance.email = validated_data.get('email', instance.email)
+        if 'password' in validated_data:
+            instance.set_password(validated_data['password'])
+        
+        if 'username' in validated_data and validated_data['username'] != original_username:
+            instance.username = original_username
+
+        instance.save()
+        return instance
+
 
 class RepositorioSerializer(serializers.ModelSerializer):
     colaboradores = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True, required=False)

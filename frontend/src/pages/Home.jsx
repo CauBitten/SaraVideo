@@ -1,5 +1,6 @@
 import React from "react";
-import UserRepos from "../components/UserRepos"; 
+import UserRepos from "../components/UserRepos";
+import UserEditForm from "../components/UserEditForm"; 
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -9,11 +10,18 @@ function Home() {
         navigate("/criar-repo");
     };
 
+    const handleEditUserClick = () => {
+        navigate("/editar-usuario");
+    };
+
     return (
         <div>
             <UserRepos /> 
             <button onClick={handleCreateRepoClick}>
                 Criar Novo Repositório
+            </button>
+            <button onClick={handleEditUserClick}>
+                Editar Perfil
             </button>
         </div>
     );
