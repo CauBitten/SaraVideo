@@ -93,7 +93,6 @@ class VideoSerializer(serializers.ModelSerializer):
 
         return super().create(validated_data)
 
-
 class AnaliseSerializer(serializers.ModelSerializer):
     video = VideoSerializer(read_only=True)
 

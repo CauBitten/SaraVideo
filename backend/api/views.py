@@ -126,3 +126,11 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+class ListVideosInRepositoryView(generics.ListAPIView):
+    serializer_class = VideoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        repository_id = self.kwargs.get('repository_id')
+        return Video.objects.filter(repositorio_id=repository_id)

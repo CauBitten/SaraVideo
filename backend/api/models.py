@@ -43,13 +43,15 @@ class Video(models.Model):
 
     def __str__(self):
         return self.titulo
-
+    
     def save(self, *args, **kwargs):
         is_new = self.pk is None
         if is_new and self.arquivo:
             super().save(*args, **kwargs)  # Salva o objeto primeiro para garantir que `self.pk` esteja definido
             self.calculate_duration()
             self.generate_thumbnail()
+            self.save()
+            
         else:
             super().save(*args, **kwargs)
 
@@ -83,7 +85,7 @@ class Video(models.Model):
         # Salvar a imagem na pasta de thumbnails
         thumb_file = ContentFile(thumb_io.getvalue(), filename)
         self.thumbnail.save(filename, thumb_file, save=False)
-
+        
 
 class Analise(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='analise')
