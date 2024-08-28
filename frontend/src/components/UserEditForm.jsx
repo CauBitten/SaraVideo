@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-import "../styles/Form.css";
+import "../styles/UserEdit.css"; // Importe o novo CSS
 
 const { Title } = Typography;
 
@@ -39,53 +39,50 @@ function UserEditForm() {
     };
 
     return (
-        <div>
-            <Title level={1} className="titulo-form">Edit User</Title>
+        <div className="user-edit-form-container">
+            <Title level={1} className="user-edit-form-title">Edit User</Title>
             <Form
                 form={form}
                 name="editUser"
                 initialValues={{ remember: true }}
                 onFinish={handleSubmit}
-                className="login-form"
             >
-                <label className="label">USERNAME</label>
                 <Form.Item
-                    className="form-input"
+                    label="Username"
+                    className="user-edit-form-item"
                     name="username"
                     rules={[{ required: true, message: "Username is required!" }]}
                 >
-                    <Input placeholder="Your username" className="input-form" disabled />
+                    <Input placeholder="Your username" className="user-edit-input" disabled />
                 </Form.Item>
 
-                <label className="label">E-MAIL</label>
                 <Form.Item
-                    className="form-input"
+                    label="E-mail"
+                    className="user-edit-form-item"
                     name="email"
                     rules={[{ required: true, message: "Please input your e-mail!" }]}
                 >
-                    <Input placeholder="Your e-mail" className="input-form" />
+                    <Input placeholder="Your e-mail" className="user-edit-input" />
                 </Form.Item>
 
-                <label className="label">PASSWORD</label>
                 <Form.Item
-                    className="form-input"
+                    label="Password"
+                    className="user-edit-form-item"
                     name="password"
                     rules={[{ required: true, message: "Please input your password!" }]}
                 >
-                    <Input.Password placeholder="Your password" className="input-form" />
+                    <Input.Password placeholder="Your password" className="user-edit-input" />
                 </Form.Item>
 
-                <div className="buttons">
-                    <Form.Item>
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            loading={loading}
-                            className="button"
-                        >
-                            Save Changes
-                        </Button>
-                    </Form.Item>
+                <div className="user-edit-button-container">
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        loading={loading}
+                        className="user-edit-save-button"
+                    >
+                        Save Changes
+                    </Button>
                 </div>
             </Form>
         </div>

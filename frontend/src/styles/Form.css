@@ -1,5 +1,4 @@
-/* Estilo para o contêiner principal */
-
+/* Fontes Personalizadas */
 @font-face {
   font-family: "DM Sans Bold";
   src: url(/fonts/DMSans_18pt-Bold.woff);
@@ -15,6 +14,20 @@
   src: url(/fonts/DMSans_18pt-Medium.woff);
 }
 
+/* Variáveis de CSS */
+:root {
+  --primary-color: #1e0e62;
+  --secondary-color: #25dac5;
+  --font-color: #a1a1b0;
+  --background-color: rgba(255, 255, 255, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --border-radius: 10px;
+  --font-family-bold: "DM Sans Bold", sans-serif;
+  --font-family-medium: "DM Sans Medium", sans-serif;
+  --font-family-regular: "DM Sans", sans-serif;
+}
+
+/* Reset */
 body,
 html {
   height: 100%;
@@ -22,11 +35,13 @@ html {
   font-family: Arial, sans-serif;
 }
 
+/* Contêiner Principal */
 .container {
   display: flex;
   height: 100%;
 }
 
+/* Layout das Colunas */
 .row {
   width: 100%;
   max-width: 100%;
@@ -47,25 +62,29 @@ html {
   flex: 5;
 }
 
+/* Imagem Responsiva */
 .image {
   max-width: 100%;
-  max-height: 100vh; 
+  max-height: 100vh;
   width: 100%;
   height: 100%;
 }
 
+/* Estilo do Formulário */
 .form-container {
   max-width: 100%;
-  width: 300px; 
+  width: 300px;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .form-container h1 {
   text-align: center;
   margin-bottom: 20px;
+  font-family: var(--font-family-bold);
+  color: var(--primary-color);
 }
 
 .form-container .ant-form-item {
@@ -92,48 +111,56 @@ html {
   color: #1890ff;
 }
 
+/* Centralização do Formulário */
 .container-form {
   display: grid;
   justify-content: center;
   align-items: center;
 }
 
+/* Estilo das Labels */
 .label {
-  font-family: "DM Sans Bold", sans-serif;
-  color: #1e0e62;
+  font-family: var(--font-family-bold);
+  color: var(--primary-color);
   font-size: 0.875rem;
   letter-spacing: 1px;
+  margin-bottom: 0.5rem; /* Espaçamento abaixo da label */
+  display: block; /* Para garantir que a label esteja acima do input */
 }
 
+/* Estilo dos Inputs */
 .form-input {
   margin-top: 0.4375rem;
   width: 29.375rem;
 }
 
+/* Título */
 .title {
-  font-family: "DM Sans Bold", sans-serif;
+  font-family: var(--font-family-bold);
   position: absolute;
   top: 28px;
   left: 64px;
-  color: #1e0e62;
+  color: var(--primary-color);
   font-size: 1.5rem;
 }
 
 .titulo-form {
-  font-family: "DM Sans Bold", sans-serif;
-  color: #1e0e62;
+  font-family: var(--font-family-bold);
+  color: var(--primary-color);
   font-size: 2.625rem;
 }
 
+/* Estilo dos Inputs do Formulário */
 .input-form {
   border-radius: 50px;
   font-size: 20px;
   height: 60px;
-  font-family: "DM Sans Medium", sans-serif;
+  font-family: var(--font-family-medium);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
+/* Botões */
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -141,18 +168,44 @@ html {
 }
 
 .link {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--font-family-regular);
   font-size: 1rem;
-  color: #a1a1b0;
+  color: var(--font-color);
   text-decoration: none;
 }
 
 .button {
-  font-family: "DM Sans Medium", sans-serif;
+  font-family: var(--font-family-medium);
   font-size: 1.125rem;
   padding: 1.0625rem 4.8125rem;
   border-radius: 50px;
-  background-color: #25dac5;
+  background-color: var(--secondary-color);
   width: 13.125rem;
   height: 3.75rem;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+
+  .input-form {
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .button {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .titulo-form {
+    font-size: 2rem;
+  }
 }

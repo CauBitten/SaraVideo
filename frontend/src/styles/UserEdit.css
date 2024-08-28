@@ -1,0 +1,78 @@
+/* Estilo do Contêiner do Formulário de Edição de Usuário */
+.user-edit-form-container {
+    max-width: 500px;
+    /* Ajuste a largura conforme necessário */
+    width: 100%;
+    padding: 20px;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    margin: 0 auto;
+    /* Centraliza horizontalmente */
+}
+
+/* Estilo do Título da Página de Edição */
+.user-edit-form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: var(--font-family-bold);
+    color: var(--primary-color);
+    font-size: 2rem;
+    /* Ajuste o tamanho do título conforme necessário */
+}
+
+/* Estilo dos Itens do Formulário */
+.user-edit-form-item {
+    margin-bottom: 20px;
+}
+
+/* Estilo dos Campos de Entrada */
+.user-edit-input {
+    border-radius: 5px;
+    font-size: 16px;
+    height: 40px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Estilo dos Botões na Página de Edição */
+.user-edit-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.user-edit-save-button {
+    font-family: var(--font-family-medium);
+    font-size: 1.125rem;
+    padding: 0.75rem 3rem;
+    border-radius: 50px;
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+/* Estilo do Contêiner do Formulário de Edição de Usuário */
+.user-edit-container {
+    margin-top: 80px;
+    /* Ajuste a margem superior conforme necessário */
+    padding: 20px;
+    /* Adicione padding se desejar um espaçamento adicional interno */
+}
+
+/* Estilo do Botão Voltar */
+.back-button {
+    margin-top: 20px;
+    /* Espaçamento acima do botão */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #1e0e62;
+    /* Cor de fundo ao passar o mouse */
+}
