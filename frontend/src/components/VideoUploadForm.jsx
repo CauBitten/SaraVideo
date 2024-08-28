@@ -1,9 +1,10 @@
 import { useState } from "react";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/Form.css";
 
 function VideoUploadForm({ route }) {
+    const { id: repositoryId } = useParams(); // Get repository ID from URL
     const [title, setTitle] = useState("");
     const [videoFile, setVideoFile] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ function VideoUploadForm({ route }) {
                 },
             });
             alert('Video uploaded successfully!');
-            navigate("/");
+            navigate(`/repositorios/${repositoryId}/`); // Navigate back to repository's main page
         } catch (error) {
             alert('Failed to upload video.');
             console.error('There was an error uploading the video:', error);
