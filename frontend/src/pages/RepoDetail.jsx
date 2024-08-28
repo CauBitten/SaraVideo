@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Repositorio from "../components/Repositorio";
-import DeleteRepositoryButton from "../components/DeleteRepoButton";
 import api from "../api";
 import { useParams, Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 function RepoDetail() {
     const { id } = useParams();
@@ -35,10 +35,13 @@ function RepoDetail() {
 
     return (
         <div>
-            <Repositorio />
-            <Link to={`/repositorios/${id}/edit`}>
-                <button>Editar Repositório</button>
-            </Link>
+            <NavBar />
+            <div>
+                <Repositorio />
+                <Link to={`/repositorios/${id}/edit`}>
+                    <button>Editar Repositório</button>
+                </Link>
+            </div>
         </div>
     );
 }

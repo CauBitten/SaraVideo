@@ -1,6 +1,7 @@
 import React from "react";
 import UserRepos from "../components/UserRepos";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 function Home() {
     const navigate = useNavigate();
@@ -15,13 +16,18 @@ function Home() {
 
     return (
         <div>
-            <UserRepos /> 
-            <button onClick={handleCreateRepoClick}>
-                Criar Novo Repositório
-            </button>
-            <button onClick={handleEditUserClick}>
-                Editar Perfil
-            </button>
+            <div>
+                <NavBar />
+            </div>
+            <div>
+                <UserRepos />
+                <button onClick={handleCreateRepoClick}>
+                    Criar Novo Repositório
+                </button>
+                <button onClick={handleEditUserClick}>
+                    Editar Perfil
+                </button>
+            </div>
         </div>
     );
 }
