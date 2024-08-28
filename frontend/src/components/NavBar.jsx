@@ -12,6 +12,11 @@ const NavBar = () => {
     navigate('/'); // Redireciona para a página inicial
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/login');
+  };
+
   return (
     <Header className="custom-header">
       <Menu theme="dark" mode="horizontal" className="custom-menu">
@@ -21,7 +26,14 @@ const NavBar = () => {
         </Menu.Item>
       </Menu>
       <div className="custom-logout-container">
-        <Button type="default" icon={<LogoutOutlined />} className="custom-logout-button">Logout</Button>
+        <Button
+          type="default"
+          icon={<LogoutOutlined />}
+          className="custom-logout-button"
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
       </div>
     </Header>
   );

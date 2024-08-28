@@ -11,16 +11,6 @@ import Upload from "./pages/Upload"
 import EditRepo from "./pages/EditRepo"
 import UserEdit from "./pages/UserEdit"
 
-function Logout() {
-  localStorage.clear()
-  return <Navigate to="/login" />
-}
-
-function RegisterAndLogout() {
-  localStorage.clear()
-  return <Register />
-}
-
 function App() {
   return (
     <BrowserRouter>
@@ -34,8 +24,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<RegisterAndLogout />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/criar-repo" element={<CreateRepo />} />
         <Route path="/repositorios/:id" element={<RepoDetail />} />
         <Route path="/repositorios/:id/upload" element={<Upload />} />
