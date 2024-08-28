@@ -10,6 +10,7 @@ import RepoDetail from "./pages/RepoDetail"
 import Upload from "./pages/Upload"
 import EditRepo from "./pages/EditRepo"
 import UserEdit from "./pages/UserEdit"
+import Video from "./pages/Video"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/repositorios/:id" element={<RepoDetail />} />
         <Route path="/repositorios/:id/upload" element={<Upload />} />
         <Route path="/repositorios/:id/edit" element={<EditRepo />} />
+        <Route path="/videos/:id" element={<Video />} />
         <Route path="/editar-usuario" element={<UserEdit />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>

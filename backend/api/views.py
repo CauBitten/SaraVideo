@@ -114,9 +114,11 @@ class VideoCreateView(generics.CreateAPIView):
         return super().post(request, *args, **kwargs)
 
 
-class VideoAPIView(generics.RetrieveUpdateDestroyAPIView):
+class VideoAPIView(generics.RetrieveAPIView):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
 
 
 class UserProfileView(generics.RetrieveUpdateAPIView):
