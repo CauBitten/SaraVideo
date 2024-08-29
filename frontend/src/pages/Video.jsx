@@ -37,7 +37,7 @@ function Video() {
             <div className="video-container">
                 <h1>{video.titulo}</h1>
                 <video controls>
-                    <source src={video.url} type="video/mp4" />
+                    <source src={video.arquivo} type="video/mp4" />
                     Seu navegador não suporta o elemento de vídeo.
                 </video>
                 <p>{video.descricao}</p>
