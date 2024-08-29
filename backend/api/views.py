@@ -136,3 +136,14 @@ class ListVideosInRepositoryView(generics.ListAPIView):
     def get_queryset(self):
         repository_id = self.kwargs.get('repository_id')
         return Video.objects.filter(repositorio_id=repository_id)
+    
+class VideoDeleteView(generics.DestroyAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        # Obter o repositório a ser excluído
+        video = self.get_object()
+        # Excluir o video
+        return super().delete(request, *args, **kwargs)

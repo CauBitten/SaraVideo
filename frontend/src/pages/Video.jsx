@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../api';
 import "../styles/Video.css";
+import DeleteVideoButton from '../components/DeleteVideoButton';
+import NavBar from "../components/NavBar";
+
 
 function Video() {
     const { id } = useParams();
     const [video, setVideo] = useState(null);
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchVideo = async () => {
@@ -28,14 +32,18 @@ function Video() {
     if (!video) return <p>Vídeo não encontrado.</p>;
 
     return (
-        <div className="video-container">
-            <h1>{video.titulo}</h1>
-            <video controls>
-                <source src={video.url} type="video/mp4" />
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-            <p>{video.descricao}</p>
-        </div>
+        <div>
+            <NavBar />
+            <div className="video-container">
+                <h1>{video.titulo}</h1>
+                <video controls>
+                    <source src={video.url} type="video/mp4" />
+                    Seu navegador não suporta o elemento de vídeo.
+                </video>
+                <p>{video.descricao}</p>
+                <DeleteVideoButton videoId={id} />
+            </div>
+        </div>    
     );
 }
 
