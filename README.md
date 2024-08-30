@@ -5,7 +5,7 @@ Participantes do grupo:
 <ul>
   <li>Anthony Guerra</li>
   <li>Cauã Bittencourt</li>
-  <li>João Guilherme Bispo</li>
+  <li>João Guilherme Miranda</li>
   <li>Higor Cordeiro</li>
   <li>Vithor Souza</li>
 </ul>
