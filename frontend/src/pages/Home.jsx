@@ -1,4 +1,3 @@
-import React from "react";
 import UserRepos from "../components/UserRepos";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";

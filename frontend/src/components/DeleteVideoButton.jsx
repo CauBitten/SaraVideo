@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { Button, Modal } from "antd";
 import api from "../api";
 import { useNavigate } from "react-router-dom";

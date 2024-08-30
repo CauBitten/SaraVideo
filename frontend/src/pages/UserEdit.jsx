@@ -1,4 +1,3 @@
-import React from "react";
 import UserEditForm from "../components/UserEditForm";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar";

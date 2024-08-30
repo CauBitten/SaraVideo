@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout, Menu, Button } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';

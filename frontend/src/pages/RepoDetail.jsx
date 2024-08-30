@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Repositorio from "../components/Repositorio";
 import api from "../api";
 import { useParams, Link } from "react-router-dom";
