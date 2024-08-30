@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
+// Componente DeleteVideoButton.js
+import React from "react";
 import { Button, Modal } from "antd";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import "../styles/Video.css";
 
-function DeleteVideoButton({ videoId }) {
+function DeleteVideoButton({ videoId, repositoryId }) {  // Recebe o repositoryId como prop
     const navigate = useNavigate();
 
     const handleDelete = async () => {
@@ -17,7 +19,7 @@ function DeleteVideoButton({ videoId }) {
                 try {
                     await api.delete(`/api/videos/${videoId}/delete/`);
                     alert('Video deleted successfully!');
-                    navigate("/");
+                    navigate(`/repositorios/${repositoryId}/`); // Navega para a página correta do repositório
                 } catch (error) {
                     alert('Failed to delete video.');
                     console.error('Delete error:', error);

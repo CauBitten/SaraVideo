@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
+// Componente Video.js
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../api';
 import "../styles/Video.css";
 import DeleteVideoButton from '../components/DeleteVideoButton';
 import NavBar from "../components/NavBar";
 
-
 function Video() {
-    const { id } = useParams();
+    const { id: videoId } = useParams(); // Renomeado para videoId para evitar confusão
     const [video, setVideo] = useState(null);
     const [loading, setLoading] = useState(true);
-
 
     useEffect(() => {
         const fetchVideo = async () => {
             try {
-                const response = await api.get(`/api/videos/${id}/`);
+                const response = await api.get(`/api/videos/${videoId}/`);
                 setVideo(response.data);
             } catch (error) {
                 console.error("Erro ao buscar vídeo:", error);
@@ -25,10 +24,9 @@ function Video() {
         };
 
         fetchVideo();
-    }, [id]);
+    }, [videoId]);
 
     if (loading) return <p>Carregando...</p>;
-
     if (!video) return <p>Vídeo não encontrado.</p>;
 
     return (
@@ -41,7 +39,8 @@ function Video() {
                     Seu navegador não suporta o elemento de vídeo.
                 </video>
                 <p>{video.descricao}</p>
-                <DeleteVideoButton videoId={id} />
+                {/* Alterado para usar o campo correto de repositoryId */}
+                <DeleteVideoButton videoId={videoId} repositoryId={video.repositorio} /> 
             </div>
         </div>    
     );
