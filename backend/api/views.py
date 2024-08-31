@@ -147,3 +147,35 @@ class VideoDeleteView(generics.DestroyAPIView):
         video = self.get_object()
         # Excluir o video
         return super().delete(request, *args, **kwargs)
+    
+class MultipleVideoDeleteView(generics.DestroyAPIView):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        # Lista de IDs de vídeos a serem excluídos
+        video_ids = request.data.get('video_ids', [])
+
+        if not video_ids:
+            return Response(
+                {"detail": "No video IDs provided."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Filtrar os vídeos a serem excluídos
+        videos_to_delete = self.queryset.filter(id__in=video_ids)
+
+        if not videos_to_delete.exists():
+            return Response(
+                {"detail": "No matching videos found."},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # Excluir os vídeos
+        videos_to_delete.delete()
+
+        return Response(
+            {"detail": f"{len(video_ids)} videos were successfully deleted."},
+            status=status.HTTP_204_NO_CONTENT
+        )
