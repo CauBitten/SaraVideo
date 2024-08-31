@@ -1,6 +1,7 @@
 import { Layout, Menu, Button } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import '../styles/NavBar.css'; // Adicione o CSS personalizado
 
 const { Header } = Layout;
 

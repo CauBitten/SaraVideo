@@ -51,10 +51,10 @@ function Repositorio() {
             <div className="videos-list">
                 {videos.map(video => (
                     <Link key={video.id} to={`/videos/${video.id}`} className="video-item">
-                        <h2>{video.titulo}</h2>
                         {video.thumbnail && (
-                            <img src={video.thumbnail} alt={`${video.titulo} thumbnail`} />
+                            <img src={video.thumbnail} alt={`${video.titulo} thumbnail`} className="video-thumbnail"/>
                         )}
+                        <h2>{video.titulo}</h2>
                     </Link>
                 ))}
             </div>

@@ -3,6 +3,7 @@ import Repositorio from "../components/Repositorio";
 import api from "../api";
 import { useParams, Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import "../styles/RepoDetail.css"; // Adicionando o CSS correspondente
 
 function RepoDetail() {
     const { id } = useParams();
@@ -36,10 +37,10 @@ function RepoDetail() {
     return (
         <div>
             <NavBar />
-            <div>
+            <div className="repo-detail-container">
                 <Repositorio />
-                <Link to={`/repositorios/${id}/edit`}>
-                    <button>Editar Repositório</button>
+                <Link to={`/repositorios/${id}/edit`} className="edit-button">
+                    Editar Repositório
                 </Link>
             </div>
         </div>

@@ -1,38 +1,30 @@
-/* Estilos do cabeçalho */
 .custom-header {
-  background: #001529;
-  padding: 0 20px;
+  background-color: #001529; /* Fundo escuro */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 }
 
-/* Estilos do menu */
 .custom-menu {
-  flex: 1;
+  flex-grow: 1;
 }
 
 .custom-menu-item {
-  font-weight: bold;
-}
-
-.custom-menu-item.ant-menu-item-selected {
-  background-color: #722ed1;
+  color: #fff;
+  font-size: 16px;
 }
 
 .custom-logout-container {
-  display: flex;
-  align-items: center;
+  margin-left: auto;
 }
 
-/* Estilos do botão de logout */
 .custom-logout-button {
-  margin-left: 10px;
-  background-color: #1890ff;
-  border-color: #1890ff;
+  color: #fff;
+  border: none;
+  background-color: transparent;
 }
 
 .custom-logout-button:hover {
-  background-color: #40a9ff;
-  border-color: #40a9ff;
+  color: #ff4d4f;
 }
