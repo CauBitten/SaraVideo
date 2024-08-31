@@ -21,7 +21,6 @@ function RepoDetail() {
       } finally {
         setLoading(false);
       }
-      console.log(repositorio);
     };
 
     fetchRepositorio();
