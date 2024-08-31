@@ -70,21 +70,56 @@ html {
   height: 100%;
 }
 
+#repository-form {
+  border: 1px solid green;
+  margin-right: 80px;
+}
+
+#repository-image {
+  border: 1px solid blue;
+}
+
 /* Estilo do Formulário */
 .form-container {
   max-width: 100%;
-  width: 300px;
-  padding: 20px;
+  width: 100%;
+  margin: 0 10%;
   background: var(--background-color);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px var(--shadow-color);
+  border: 1px solid red;
+  display: flex;
+  font-family: "DM Sans Medium", sans-serif;
 }
 
 .form-container h1 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: -20px;
+  color: #212121 !important;
+  text-align: start;
   font-family: var(--font-family-bold);
   color: var(--primary-color);
+}
+
+.form-container h4 {
+  font-weight: 100;
+  color: #666666 !important;
+  width: 420px;
+  border-bottom: 2px solid #aaa8a8;
+}
+
+.form-box {
+  display: grid;
+}
+
+.form-box label {
+  margin-bottom: -8px;
+}
+
+.repo-form-input {
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  background: #d9d9d9;
+  border: none;
 }
 
 .form-container .ant-form-item {

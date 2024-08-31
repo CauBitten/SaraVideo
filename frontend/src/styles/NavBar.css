@@ -1,5 +1,20 @@
+@font-face {
+  font-family: "DM Sans Bold";
+  src: url(/fonts/DMSans_18pt-Bold.woff);
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url(/fonts/DMSans_18pt-Regular.woff);
+}
+
+@font-face {
+  font-family: "DM Sans Medium";
+  src: url(/fonts/DMSans_18pt-Medium.woff);
+}
+
 .custom-header {
-  background-color: #001529; /* Fundo escuro */
+  background-color: #f3f3f3;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,11 +23,13 @@
 
 .custom-menu {
   flex-grow: 1;
+  background-color: #f3f3f3;
 }
 
 .custom-menu-item {
-  color: #fff;
   font-size: 16px;
+  font-family: "DM Sans";
+  color: #000 !important;
 }
 
 .custom-logout-container {
@@ -20,11 +37,16 @@
 }
 
 .custom-logout-button {
-  color: #fff;
+  color: black;
   border: none;
-  background-color: transparent;
+  background-color: #ebebeb;
 }
 
 .custom-logout-button:hover {
-  color: #ff4d4f;
+  color: black !important;
+}
+
+.selected {
+  background-color: #e8e8e8;
+  border-bottom: 3px solid #583dff;
 }
