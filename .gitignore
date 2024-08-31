@@ -1,4 +1,4 @@
 # Venv Files & Folder
 Pipfile
 Pipfile.lock
-.\venv
+venv
