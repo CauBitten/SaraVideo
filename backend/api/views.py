@@ -86,6 +86,30 @@ class RepositorioUpdateView(generics.UpdateAPIView):
     serializer_class = RepositorioSerializer
     permission_classes = [IsAuthenticated]
 
+    def update(self, request, *args, **kwargs):
+        repo = self.get_object()
+        data = request.data
+
+        # Verificar se 'colaboradores' está no corpo da requisição
+        colaboradores = data.get('colaboradores', [])
+        if colaboradores:
+            # Validar se 'colaboradores' é uma lista de IDs numéricos
+            if not all(isinstance(id, int) for id in colaboradores):
+                return Response({'error': 'Todos os colaboradores devem ser IDs numéricos.'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Atualizar a lista de colaboradores
+            repo.colaboradores.set(colaboradores)
+            repo.save()
+            data.pop('colaboradores')  # Remove a chave colaboradores dos dados de update
+
+        # Atualizar outras informações do repositório
+        serializer = self.get_serializer(repo, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
@@ -128,6 +152,19 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class UserListView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Filtra usuários por nome de usuário
+        username = self.request.query_params.get('username', None)
+        if username:
+            return User.objects.filter(username=username)
+        return User.objects.none()
+
 
 class ListVideosInRepositoryView(generics.ListAPIView):
     serializer_class = VideoSerializer
