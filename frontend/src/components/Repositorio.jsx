@@ -103,6 +103,8 @@ function Repositorio() {
             <h1>Detalhes do Repositório - {repositorio.nome}</h1>
             <p>Descrição: {repositorio.descricao}</p>
             <p>Criado em: {new Date(repositorio.criado_em).toLocaleDateString()}</p>
+            <p>Criador: {repositorio.criador.username}</p>
+            
 
             <div className="repositorio-actions">
                 {/* Botão para redirecionar ao upload de vídeo */}

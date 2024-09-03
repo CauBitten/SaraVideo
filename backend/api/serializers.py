@@ -30,6 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RepositorioSerializer(serializers.ModelSerializer):
+    criador = UserSerializer(read_only=True)
     colaboradores = UserSerializer(many=True, read_only=True) 
 
     class Meta:
