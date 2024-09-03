@@ -1,4 +1,3 @@
-// Repositorio.js
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api';
@@ -19,28 +18,28 @@ function Repositorio() {
     const [selectedVideos, setSelectedVideos] = useState([]);
 
     useEffect(() => {
-        const fetchRepositorio = async () => {
-            try {
-                const response = await api.get(`/api/repositorios/${id}/`);
-                setRepositorio(response.data);
-            } catch (error) {
-                console.error("Erro ao buscar repositório:", error);
-            }
-        };
-
-        const fetchVideos = async () => {
-            try {
-                const response = await api.get(`/api/repositorios/${id}/videos/`);
-                setVideos(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error("Erro ao buscar vídeos:", error);
-            }
-        };
-
         fetchRepositorio();
         fetchVideos();
     }, [id]);
+
+    const fetchRepositorio = async () => {
+        try {
+            const response = await api.get(`/api/repositorios/${id}/`);
+            setRepositorio(response.data);
+        } catch (error) {
+            console.error("Erro ao buscar repositório:", error);
+        }
+    };
+
+    const fetchVideos = async () => {
+        try {
+            const response = await api.get(`/api/repositorios/${id}/videos/`);
+            setVideos(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error("Erro ao buscar vídeos:", error);
+        }
+    };
 
     if (loading) return <p>Carregando...</p>;
 
@@ -85,17 +84,16 @@ function Repositorio() {
     // Função para excluir os vídeos selecionados
     const handleBulkDelete = async () => {
         try {
-            // Supondo que a API suporte exclusão em massa
-            await api.post(`/api/videos/bulk-delete/`, { ids: selectedVideos });
+            // Faz a requisição DELETE com os IDs dos vídeos selecionados
+            await api.delete(`/api/videos/delete-multiple/`, {
+                data: { ids: selectedVideos }
+            });
             alert('Vídeos excluídos com sucesso!');
-            // Atualizar a lista de vídeos
-            const response = await api.get(`/api/repositorios/${id}/videos/`);
-            setVideos(response.data);
-            // Sair do modo de seleção
-            setIsSelectionMode(false);
-            setSelectedVideos([]);
+            setSelectedVideos([]); // Limpa a seleção
+            fetchVideos(); // Atualiza a lista de vídeos após a exclusão
+            setIsSelectionMode(!isSelectionMode);
         } catch (error) {
-            alert('Falha ao excluir vídeos.');
+            alert('Falha ao excluir vídeos. Por favor, tente novamente mais tarde.');
             console.error('Erro na exclusão em massa:', error);
         }
     };
