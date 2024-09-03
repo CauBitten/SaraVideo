@@ -86,6 +86,30 @@ class RepositorioUpdateView(generics.UpdateAPIView):
     serializer_class = RepositorioSerializer
     permission_classes = [IsAuthenticated]
 
+    def update(self, request, *args, **kwargs):
+        repo = self.get_object()
+        data = request.data
+
+        # Verificar se 'colaboradores' está no corpo da requisição
+        colaboradores = data.get('colaboradores', [])
+        if colaboradores:
+            # Validar se 'colaboradores' é uma lista de IDs numéricos
+            if not all(isinstance(id, int) for id in colaboradores):
+                return Response({'error': 'Todos os colaboradores devem ser IDs numéricos.'}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Atualizar a lista de colaboradores
+            repo.colaboradores.set(colaboradores)
+            repo.save()
+            data.pop('colaboradores')  # Remove a chave colaboradores dos dados de update
+
+        # Atualizar outras informações do repositório
+        serializer = self.get_serializer(repo, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
@@ -129,6 +153,19 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
+
+class UserListView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Filtra usuários por nome de usuário
+        username = self.request.query_params.get('username', None)
+        if username:
+            return User.objects.filter(username=username)
+        return User.objects.none()
+
+
 class ListVideosInRepositoryView(generics.ListAPIView):
     serializer_class = VideoSerializer
     permission_classes = [IsAuthenticated]
@@ -148,34 +185,26 @@ class VideoDeleteView(generics.DestroyAPIView):
         # Excluir o video
         return super().delete(request, *args, **kwargs)
     
-class MultipleVideoDeleteView(generics.DestroyAPIView):
+class MultipleVideoDeleteView(generics.GenericAPIView):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
     permission_classes = [IsAuthenticated]
 
     def delete(self, request, *args, **kwargs):
-        # Lista de IDs de vídeos a serem excluídos
-        video_ids = request.data.get('video_ids', [])
-
+        video_ids = request.data.get('ids', [])
         if not video_ids:
-            return Response(
-                {"detail": "No video IDs provided."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            return Response({'error': 'No video IDs provided.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Filtrar vídeos pelo IDs recebidos na requisição
+        videos = Video.objects.filter(id__in=video_ids)
 
-        # Filtrar os vídeos a serem excluídos
-        videos_to_delete = self.queryset.filter(id__in=video_ids)
+        # Excluir os arquivos de vídeo e suas pastas
+        for video in videos:
+            file_path = video.arquivo.path
+            if os.path.isfile(file_path):
+                os.remove(file_path)
 
-        if not videos_to_delete.exists():
-            return Response(
-                {"detail": "No matching videos found."},
-                status=status.HTTP_404_NOT_FOUND
-            )
+        # Excluir os registros de vídeo do banco de dados
+        videos.delete()
 
-        # Excluir os vídeos
-        videos_to_delete.delete()
-
-        return Response(
-            {"detail": f"{len(video_ids)} videos were successfully deleted."},
-            status=status.HTTP_204_NO_CONTENT
-        )
+        return Response({'detail': 'Videos deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)

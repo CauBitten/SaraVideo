@@ -30,8 +30,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RepositorioSerializer(serializers.ModelSerializer):
-    colaboradores = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=True, required=False)
-    
+    colaboradores = UserSerializer(many=True, read_only=True) 
+
     class Meta:
         model = Repositorio
         fields = ['id', 'nome', 'descricao', 'criado_em', 'atualizado_em', 'criador', 'colaboradores']
@@ -44,16 +44,12 @@ class RepositorioSerializer(serializers.ModelSerializer):
             repositorio.colaboradores.set(colaboradores)
         return repositorio
 
-    def validate(self, data):
-        criador = self.context['request'].user
-        colaboradores = data.get('colaboradores', [])
-
-        # Garantir que o criador esteja incluído na lista de colaboradores
-        if criador and criador not in colaboradores:
-            colaboradores.append(criador)
-        
-        data['colaboradores'] = colaboradores
-        return data
+    def update(self, instance, validated_data):
+        colaboradores = validated_data.pop('colaboradores', None)
+        instance = super().update(instance, validated_data)
+        if colaboradores is not None:
+            instance.colaboradores.set(colaboradores)
+        return instance
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
