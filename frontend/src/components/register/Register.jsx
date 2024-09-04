@@ -1,5 +1,5 @@
-import RegisterForm from "../components/RegisterForm"
-import HomeImage from "../static/home.jpeg";
+import RegisterForm from "./RegisterForm"
+import HomeImage from "../../static/home.jpeg";
 
 function Register() {
     return <div className="container">

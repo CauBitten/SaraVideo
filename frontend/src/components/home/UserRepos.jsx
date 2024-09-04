@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import api from "../api";
+import api from "../../api";
 
 function UserRepos() {
     const [repositorios, setRepositorios] = useState([]);

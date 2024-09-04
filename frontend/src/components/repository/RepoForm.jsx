@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import api from "../api";
+import api from "../../api";
 import { useNavigate } from "react-router-dom";
-import "../styles/Form.css";
+import "../../styles/Form.css";
 import { Checkbox } from "antd";
 
 function RepoForm({ route }) {

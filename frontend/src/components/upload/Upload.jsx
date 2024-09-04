@@ -1,6 +1,6 @@
-import VideoUploadForm from '../components/VideoUploadForm';
+import VideoUploadForm from './VideoUploadForm';
 import { useParams } from 'react-router-dom';
-import NavBar from '../components/NavBar';
+import NavBar from '../NavBar';
 
 function Upload() {
   const { id } = useParams();

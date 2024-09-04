@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import api from "../api";
-import "../styles/UserEdit.css"; // Importe o novo CSS
+import api from "../../api";
+import "../../styles/UserEdit.css"; // Importe o novo CSS
 
 const { Title } = Typography;
 

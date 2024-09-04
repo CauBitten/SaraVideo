@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import api from "../api";
-import "../styles/Form.css";
+import api from "../../api";
+import "../../styles/Form.css";
 
 const { Title, Link } = Typography;
 

@@ -1,6 +1,6 @@
-import UserRepos from "../components/UserRepos";
+import UserRepos from "./UserRepos";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../NavBar";
 
 function Home() {
     const navigate = useNavigate();

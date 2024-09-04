@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import api from '../api';
-import "../styles/Repositorio.css";
+import api from '../../api';
+import "../../styles/Repositorio.css";
 import { Modal, Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import VideoUploadForm from '../components/VideoUploadForm';
+import VideoUploadForm from '../upload/VideoUploadForm';
 
 const { confirm } = Modal;
 

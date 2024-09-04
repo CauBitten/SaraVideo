@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Repositorio from "../components/Repositorio";
-import api from "../api";
+import Repositorio from "./Repositorio";
+import api from "../../api";
 import { useParams, Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import "../styles/RepoDetail.css"; // Adicionando o CSS correspondente
+import NavBar from "../NavBar";
+import "../../styles/RepoDetail.css"; // Adicionando o CSS correspondente
 
 function RepoDetail() {
   const { id } = useParams();

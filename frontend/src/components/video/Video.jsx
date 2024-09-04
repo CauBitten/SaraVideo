@@ -1,10 +1,10 @@
 // Componente Video.js
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../api';
-import "../styles/Video.css";
-import DeleteVideoButton from '../components/DeleteVideoButton';
-import NavBar from "../components/NavBar";
+import api from '../../api';
+import "../../styles/Video.css";
+import DeleteVideoButton from './DeleteVideoButton';
+import NavBar from "../NavBar";
 
 function Video() {
     const { id: videoId } = useParams(); // Renomeado para videoId para evitar confusão

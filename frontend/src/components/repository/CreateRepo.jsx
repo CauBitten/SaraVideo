@@ -1,5 +1,5 @@
-import NavBar from "../components/NavBar.jsx";
-import RepoForm from "../components/RepoForm.jsx";
+import NavBar from "../NavBar.jsx";
+import RepoForm from "./RepoForm.jsx";
 
 function CreateRepo() {
   return (

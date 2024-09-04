@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Form, Input, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import api from "../api";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css";
+import api from "../../api";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../constants";
+import "../../styles/Form.css";
 
 function LoginForm() {
   const [loading, setLoading] = useState(false);
