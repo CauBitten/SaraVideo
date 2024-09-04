@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import api from "../api";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/Form.css";
 
-function VideoUploadForm({ route }) {
-    const { id: repositoryId } = useParams(); // Get repository ID from URL
+function VideoUploadForm({ route, onUploadSuccess }) {
+    const { id: repositoryId } = useParams();
     const [title, setTitle] = useState("");
     const [videoFile, setVideoFile] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -36,7 +35,8 @@ function VideoUploadForm({ route }) {
                 },
             });
             alert('Video uploaded successfully!');
-            navigate(`/repositorios/${repositoryId}/`); // Navigate back to repository's main page
+            if (onUploadSuccess) onUploadSuccess();
+            navigate(`/repositorios/${repositoryId}/`); // Navega de volta à página principal do repositório
         } catch (error) {
             alert('Failed to upload video.');
             console.error('There was an error uploading the video:', error);
@@ -46,22 +46,22 @@ function VideoUploadForm({ route }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="form-container">
+        <form onSubmit={handleSubmit} className="form-container-u">
             <h1>Upload Video</h1>
             <input
-                className="form-input"
+                className="form-input-u"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Title"
             />
             <input
-                className="form-input"
+                className="form-input-u"
                 type="file"
                 accept="video/*"
                 onChange={handleFileChange}
             />
-            <button className="form-button" type="submit" disabled={loading}>
+            <button className="form-button-u" type="submit" disabled={loading}>
                 {loading ? 'Uploading...' : 'Upload Video'}
             </button>
         </form>

@@ -4,6 +4,7 @@ import api from '../api';
 import "../styles/Repositorio.css";
 import { Modal, Button } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import VideoUploadForm from '../components/VideoUploadForm';
 
 const { confirm } = Modal;
 
@@ -13,9 +14,11 @@ function Repositorio() {
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // Estados para seleção de vídeos
     const [isSelectionMode, setIsSelectionMode] = useState(false);
     const [selectedVideos, setSelectedVideos] = useState([]);
+    
+    // Estado para o pop-up de upload de vídeo
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     useEffect(() => {
         fetchRepositorio();
@@ -41,20 +44,13 @@ function Repositorio() {
         }
     };
 
-    if (loading) return <p>Carregando...</p>;
-
-    if (!repositorio) return <p>Repositório não encontrado.</p>;
-
-    // Função para alternar o modo de seleção
     const toggleSelectionMode = () => {
         if (isSelectionMode) {
-            // Ao sair do modo de seleção, limpar seleções
             setSelectedVideos([]);
         }
         setIsSelectionMode(!isSelectionMode);
     };
 
-    // Função para selecionar/deselecionar um vídeo
     const toggleVideoSelection = (videoId) => {
         if (selectedVideos.includes(videoId)) {
             setSelectedVideos(selectedVideos.filter(id => id !== videoId));
@@ -63,7 +59,6 @@ function Repositorio() {
         }
     };
 
-    // Função para exibir confirmação de exclusão
     const showDeleteConfirm = () => {
         confirm({
             title: 'Tem certeza que deseja excluir os vídeos selecionados?',
@@ -75,22 +70,17 @@ function Repositorio() {
             onOk() {
                 handleBulkDelete();
             },
-            onCancel() {
-                // Nada a fazer
-            },
         });
     };
 
-    // Função para excluir os vídeos selecionados
     const handleBulkDelete = async () => {
         try {
-            // Faz a requisição DELETE com os IDs dos vídeos selecionados
             await api.delete(`/api/videos/delete-multiple/`, {
                 data: { ids: selectedVideos }
             });
             alert('Vídeos excluídos com sucesso!');
-            setSelectedVideos([]); // Limpa a seleção
-            fetchVideos(); // Atualiza a lista de vídeos após a exclusão
+            setSelectedVideos([]);
+            fetchVideos();
             setIsSelectionMode(!isSelectionMode);
         } catch (error) {
             alert('Falha ao excluir vídeos. Por favor, tente novamente mais tarde.');
@@ -98,26 +88,43 @@ function Repositorio() {
         }
     };
 
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleAfterClose = () => {
+        setSelectedVideos([]);
+    };
+
+    const handleUploadSuccess = () => {
+        setIsModalVisible(false);
+        fetchVideos();
+    };
+
+    if (loading) return <p>Carregando...</p>;
+
+    if (!repositorio) return <p>Repositório não encontrado.</p>;
+
     return (
         <div className="repositorio-container">
             <h1>Detalhes do Repositório - {repositorio.nome}</h1>
             <p>Descrição: {repositorio.descricao}</p>
             <p>Criado em: {new Date(repositorio.criado_em).toLocaleDateString()}</p>
             <p>Criador: {repositorio.criador.username}</p>
-            
 
             <div className="repositorio-actions">
-                {/* Botão para redirecionar ao upload de vídeo */}
-                <Link to={`/repositorios/${id}/upload`}>
-                    <button className="upload-video-btn">Upload Vídeo</button>
-                </Link>
+                <Button className="upload-video-btn" type="primary" onClick={showModal}>
+                    Upload Vídeo
+                </Button>
 
-                {/* Botão redondo para ativar/desativar o modo de seleção */}
                 <button className="selection-mode-btn" onClick={toggleSelectionMode}>
                     {isSelectionMode ? '✖' : '✔'}
                 </button>
 
-                {/* Botão de excluir vídeos selecionados */}
                 {isSelectionMode && (
                     <button
                         className={`bulk-delete-btn ${selectedVideos.length > 0 ? 'active' : ''}`}
@@ -146,7 +153,7 @@ function Repositorio() {
                                 className="video-checkbox"
                                 checked={selectedVideos.includes(video.id)}
                                 onChange={() => toggleVideoSelection(video.id)}
-                                onClick={(e) => e.stopPropagation()} // Evita que o clique no checkbox dispare o clique no container
+                                onClick={(e) => e.stopPropagation()} 
                             />
                         )}
                         <Link to={`/videos/${video.id}`} className="video-link">
@@ -158,6 +165,20 @@ function Repositorio() {
                     </div>
                 ))}
             </div>
+
+            <Modal
+                title="Upload Vídeo"
+                visible={isModalVisible}
+                onCancel={handleCancel}
+                afterClose={handleAfterClose}
+                footer={null}
+                centered
+            >
+                <VideoUploadForm 
+                    route={`/api/repositorios/${id}/upload/`} 
+                    onUploadSuccess={handleUploadSuccess} 
+                />
+            </Modal>
         </div>
     );
 }
