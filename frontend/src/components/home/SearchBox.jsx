@@ -12,7 +12,7 @@ const SearchBox = () => {
         <div className="search-container">
             <input 
                 type="search" 
-                placeholder="Buscar..." 
+                placeholder="Ache um repositório..." 
                 value={query}
                 onChange={handleSearch} 
                 className="search-box"

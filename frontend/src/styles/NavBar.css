@@ -13,27 +13,35 @@
   src: url(/fonts/DMSans_18pt-Medium.woff);
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .custom-header {
+  padding: 0 2rem;
   background-color: #f3f3f3;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  border-bottom: solid 0.15rem #f3f3f3;
 }
 
 .custom-menu {
-  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #f3f3f3;
+  width: 25%;
 }
 
 .custom-menu-item {
-  font-size: 16px;
+  padding: 0;
+  font-size: 1rem;
   font-family: "DM Sans";
   color: #000 !important;
-}
-
-.custom-logout-container {
-  margin-left: auto;
+  width: 50%;
+  text-align: center;
 }
 
 .custom-logout-button {
@@ -48,5 +56,5 @@
 
 .selected {
   background-color: #e8e8e8;
-  border-bottom: 3px solid #583dff;
+  border-bottom: 0.2rem solid #583dff;
 }

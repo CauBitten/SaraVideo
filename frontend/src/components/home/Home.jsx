@@ -24,13 +24,17 @@ function Home() {
             </div>
 
             <div className="home">
-                <SearchBar /> 
+
+                <div className="SearchAndCreate">
+                    <SearchBar /> 
+
+                    <button onClick={handleCreateRepoClick} className="createRepoButton">
+                        Criar Repositório
+                    </button>
+                </div>
                 
                 <UserRepos />
-
-                <button onClick={handleCreateRepoClick}>
-                    Criar Novo Repositório
-                </button>
+                
                 <button onClick={handleEditUserClick}>
                     Editar Perfil
                 </button>

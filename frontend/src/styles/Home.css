@@ -4,5 +4,31 @@
 }
 
 .home {
-    padding: 1rem;
+    padding: 2rem;
+}
+
+.SearchAndCreate {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 1rem;
+    border-bottom: 0.08rem solid #ccc;
+    box-sizing: border-box;
+}
+
+.createRepoButton {
+    padding: 0 1rem;
+    
+    background-color: rgb(50, 209, 50);
+    color: white;
+
+    cursor: pointer;
+
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+
+.createRepoButton:hover {
+    box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.5);
 }

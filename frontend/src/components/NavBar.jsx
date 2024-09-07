@@ -19,19 +19,21 @@ const NavBar = () => {
 
   return (
     <Header className="custom-header">
+
       <Menu theme="dark" mode="horizontal" className="custom-menu">
-        <Menu.Item key="1" className="custom-menu-item">
+
+        <Menu.Item key="1" className="custom-menu-item" >
           Overview
         </Menu.Item>
-        <Menu.Item
-          key="2"
-          className="custom-menu-item selected"
-          onClick={handleRepositoriesClick}
-        >
+
+        <Menu.Item key="2" className="custom-menu-item selected" onClick={handleRepositoriesClick} >
           Repositories
         </Menu.Item>
+
       </Menu>
+
       <div className="custom-logout-container">
+
         <Button
           type="default"
           icon={<LogoutOutlined />}
@@ -40,7 +42,9 @@ const NavBar = () => {
         >
           Logout
         </Button>
+        
       </div>
+
     </Header>
   );
 };

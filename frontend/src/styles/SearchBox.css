@@ -2,16 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-bottom: 0.08rem solid #ccc;
-    margin: 0 auto; /* Centraliza a div se desejar */
-    padding: 0 1rem 1rem 1rem; /* Margens laterais para a div */
+    width: 70%;
 }
 
 .search-box {
     padding: 0.7rem;
     border: 0.07rem solid #ccc;
     border-radius: 0.3rem;
-    width: 100%; /* Largura da caixa de pesquisa */
+    width: 100%;    /* Largura da caixa de pesquisa */
     box-sizing: border-box;
 }
 
