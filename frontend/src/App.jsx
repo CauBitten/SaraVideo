@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./components/login/Login"
-import Register from "./components/register/Register"
-import NotFound from "./components/not_found/NotFound"
-import ProtectedRoute from "./components/ProtectedRoute"
-import CreateRepo from "./components/repository/CreateRepo"
-import Home from "./components/home/Home"
-import RepoDetail from "./components/repo_detail/RepoDetail"
-import Upload from "./components/upload/Upload"
-import EditRepo from "./components/edit_repository/EditRepo"
-import UserEdit from "./components/edit_user/UserEdit"
-import Video from "./components/video/Video"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
+import NotFound from "./components/not_found/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
+import CreateRepo from "./components/repository/CreateRepo";
+import Home from "./components/home/Home";
+import RepoDetail from "./components/repo_detail/RepoDetail";
+import Upload from "./components/upload/Upload";
+import EditRepo from "./components/edit_repository/EditRepo";
+import UserEdit from "./components/edit_user/UserEdit";
+import Video from "./components/video/Video";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
