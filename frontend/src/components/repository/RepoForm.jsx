@@ -31,27 +31,15 @@ function RepoForm({ route }) {
       <div id="repository-form">
         <h1>Create a new repository</h1>
         <h4>A repository contains all videos, including the analytics.</h4>
-        <div id="owner-name">
-          <div className="form-box">
-            <label>Owner</label>
-            <input
-              className="form-input repo-form-input"
-              type="text"
-              /* value={usuario} readOnly  favor editar*/
-              style={{ width: "130px" }}
-            />
-          </div>
-          <span id="barra">/</span>
-          <div className="form-box">
-            <label>Repository name</label>
-            <input
-              className="form-input repo-form-input"
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              style={{ width: "246px" }}
-            />
-          </div>
+        <div className="form-box">
+          <label>Repository name</label>
+          <input
+            className="form-input repo-form-input"
+            type="text"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            style={{ width: "420px" }}
+          />
         </div>
         <div id="form-description" className="form-box">
           <label>Description</label>
@@ -62,10 +50,6 @@ function RepoForm({ route }) {
             onChange={(e) => setDescricao(e.target.value)}
             style={{ width: "420px" }}
           />
-        </div>
-        <div className="form-checkbox">
-          <input type="checkbox" />
-          <label>Private Repository?</label>
         </div>
 
         <div className="form-dropdown">
