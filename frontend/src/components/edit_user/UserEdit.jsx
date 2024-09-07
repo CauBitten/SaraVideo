@@ -2,7 +2,7 @@ import UserEditForm from "./UserEditForm";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar";
 import "../../styles/NavBar.css";
-import "../../styles/UserEdit.css"; // Importe o novo CSS
+import "../../styles/UserEdit.css"; 
 
 function UserEdit() {
     const navigate = useNavigate();

@@ -56,25 +56,25 @@
   font-family: var(--font-family-medium);
   font-size: 1.125rem;
   padding: 0.75rem 3rem;
-  border-radius: 50px;
+  border-radius: 2rem;
   background-color: var(--secondary-color);
   color: #fff;
 }
 
 /* Estilo do Contêiner do Formulário de Edição de Usuário */
 .user-edit-container {
-  margin-top: 80px;
+  margin-top: 2rem;
   /* Ajuste a margem superior conforme necessário */
-  padding: 20px;
+  padding: 1rem;
   /* Adicione padding se desejar um espaçamento adicional interno */
 }
 
 /* Estilo do Botão Voltar */
 .back-button {
-  margin-top: 20px;
+  margin-top: 1rem;
   /* Espaçamento acima do botão */
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
   border-radius: 5px;
   background-color: #25dac5;
