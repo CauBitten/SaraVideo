@@ -1,8 +1,11 @@
 import UserRepos from "./UserRepos";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar";
+import SearchBar from "./SearchBox";
+import "../../styles/Home.css";
 
 function Home() {
+    
     const navigate = useNavigate();
 
     const handleCreateRepoClick = () => {
@@ -15,18 +18,25 @@ function Home() {
 
     return (
         <div>
+
             <div>
                 <NavBar />
             </div>
-            <div>
+
+            <div className="home">
+                <SearchBar /> 
+                
                 <UserRepos />
+
                 <button onClick={handleCreateRepoClick}>
                     Criar Novo Repositório
                 </button>
                 <button onClick={handleEditUserClick}>
                     Editar Perfil
                 </button>
+
             </div>
+
         </div>
     );
 }

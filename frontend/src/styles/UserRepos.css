@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.listRepos {
+    display: grid;
+    list-style: none;
+}
+
+.repositoryBox {
+    padding: 1rem 0;    /*1rem em cima e embaixo e 0 nas laterais*/
+
+    border-bottom: 0.08rem solid #ccc;
+}
+
+.repository {
+    text-decoration: none;
+}
+
+.titleRepo, .description {
+    text-decoration: none;
+    color: black;
+    padding-left: 1rem;
+}

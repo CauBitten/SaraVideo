@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api";
+import "../../styles/UserRepos.css";
 
 function UserRepos() {
     const [repositorios, setRepositorios] = useState([]);
@@ -27,18 +28,25 @@ function UserRepos() {
     if (error) return <p>{error}</p>;
 
     return (
-        <div>
-            <h1>Meus Repositórios</h1>
-            <ul>
+        
+            <ul className="listRepos">
+
                 {repositorios.map((repo) => (
-                    <li key={repo.id}>
-                        <Link to={`/repositorios/${repo.id}`}>
-                            {repo.nome}
+                    
+                    <li key={repo.id} className="repositoryBox">
+
+                        <Link to={`/repositorios/${repo.id}`} className="repository"> 
+                            <h2 className="titleRepo"> {repo.nome} </h2>
+                            <span/>
+                            <h5 className="description"> {repo.descricao} </h5>
                         </Link>
+
                     </li>
+
                 ))}
+
             </ul>
-        </div>
+
     );
 }
 
