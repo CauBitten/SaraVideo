@@ -3,7 +3,6 @@ import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
 import "../../styles/UserEdit.css"; // Importe o novo CSS
-import { FaUser } from "react-icons/fa";
 
 const { Title } = Typography;
 
@@ -42,7 +41,7 @@ function UserEditForm() {
   return (
     <div className="user-edit-form-container">
       <Title level={1} className="user-edit-form-title">
-        Edit Profile <FaUser size={36} color="black" className="icone-user" />
+        Edit Profile 
       </Title>
       <Form
         form={form}
