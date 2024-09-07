@@ -10,7 +10,12 @@ function Login() {
           <LoginForm />
         </div>
         <div className="col">
-          <img src={HomeImage} alt="Example" className="image" />
+          <img
+            src={HomeImage}
+            alt="Example"
+            className="image"
+            style={{ height: "120%" }}
+          />
         </div>
       </div>
     </div>

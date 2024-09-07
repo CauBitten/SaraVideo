@@ -74,6 +74,11 @@ html {
   margin-right: 80px;
 }
 
+#repository-form h4 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 #repository-image {
   height: 13.5625rem;
   width: 12.4375rem;
@@ -144,10 +149,6 @@ html {
   margin-bottom: 15px;
 }
 
-#owner-name {
-  display: flex;
-}
-
 #barra {
   margin-top: 20px;
   font-size: 30px;
@@ -159,46 +160,6 @@ html {
 #form-description {
   border-bottom: 2px solid #aaa8a8;
   padding-bottom: 20px;
-}
-
-.form-checkbox {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 27px;
-}
-
-.form-checkbox input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  width: 26px;
-  height: 26px;
-  border: 3px solid #4d4d4d;
-  background-color: white;
-  cursor: pointer;
-  position: relative;
-}
-
-.form-checkbox input[type="checkbox"]:checked {
-  background-color: #4d4d4d;
-  border-color: #4d4d4d;
-}
-
-.form-checkbox input[type="checkbox"]:checked::before {
-  content: "\2713";
-  color: white;
-  font-size: 16px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.form-checkbox label {
-  margin-left: 7px;
-  font-size: 1rem;
 }
 
 .form-dropdown {
