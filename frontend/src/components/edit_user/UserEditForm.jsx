@@ -3,90 +3,134 @@ import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
 import "../../styles/UserEdit.css"; // Importe o novo CSS
+import { FaUser } from "react-icons/fa";
 
 const { Title } = Typography;
 
 function UserEditForm() {
-    const [loading, setLoading] = useState(false);
-    const [form] = Form.useForm();
-    const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await api.get('/api/profile/');
-                form.setFieldsValue(response.data);
-            } catch (error) {
-                console.error("Failed to fetch user data:", error);
-            }
-        };
-
-        fetchUserData();
-    }, [form]);
-
-    const handleSubmit = async (values) => {
-        setLoading(true);
-
-        try {
-            await api.put('/api/profile/', values);
-            navigate("/");
-        } catch (error) {
-            alert("Failed to update user profile. Please try again.");
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get("/api/profile/");
+        form.setFieldsValue(response.data);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
     };
 
-    return (
-        <div className="user-edit-form-container">
-            <Title level={1} className="user-edit-form-title">Edit User</Title>
-            <Form
-                form={form}
-                name="editUser"
-                initialValues={{ remember: true }}
-                onFinish={handleSubmit}
-            >
-                <Form.Item
-                    label="Username"
-                    className="user-edit-form-item"
-                    name="username"
-                    rules={[{ required: true, message: "Username is required!" }]}
-                >
-                    <Input placeholder="Your username" className="user-edit-input" disabled />
-                </Form.Item>
+    fetchUserData();
+  }, [form]);
 
-                <Form.Item
-                    label="E-mail"
-                    className="user-edit-form-item"
-                    name="email"
-                    rules={[{ required: true, message: "Please input your e-mail!" }]}
-                >
-                    <Input placeholder="Your e-mail" className="user-edit-input" />
-                </Form.Item>
+  const handleSubmit = async (values) => {
+    setLoading(true);
 
-                <Form.Item
-                    label="Password"
-                    className="user-edit-form-item"
-                    name="password"
-                    rules={[{ required: true, message: "Please input your password!" }]}
-                >
-                    <Input.Password placeholder="Your password" className="user-edit-input" />
-                </Form.Item>
+    try {
+      await api.put("/api/profile/", values);
+      navigate("/");
+    } catch (error) {
+      alert("Failed to update user profile. Please try again.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-                <div className="user-edit-button-container">
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        loading={loading}
-                        className="user-edit-save-button"
-                    >
-                        Save Changes
-                    </Button>
-                </div>
-            </Form>
+  return (
+    <div className="user-edit-form-container">
+      <Title level={1} className="user-edit-form-title">
+        Edit Profile <FaUser size={36} color="black" className="icone-user" />
+      </Title>
+      <Form
+        form={form}
+        name="editUser"
+        initialValues={{ remember: true }}
+        onFinish={handleSubmit}
+      >
+        <div className="form-user-info">
+          <Form.Item
+            label="Your Photo"
+            className="user-edit-form-item"
+            name="photo"
+            valuePropName="file"
+            rules={[{ required: true, message: "Please upload your photo!" }]}
+          >
+            <Input type="file" accept="image/*" className="user-edit-input" />
+          </Form.Item>
+
+          <Form.Item
+            label="Full Name"
+            className="user-edit-form-item"
+            name="fullName"
+            rules={[
+              { required: true, message: "Please input your full name!" },
+            ]}
+          >
+            <Input placeholder="Your full name" className="user-edit-input" />
+          </Form.Item>
+
+          <Form.Item
+            label="Username (New)"
+            className="user-edit-form-item"
+            name="newUsername"
+            rules={[{ required: true, message: "Username is required!" }]}
+          >
+            <Input
+              placeholder="Your new username"
+              className="user-edit-input"
+            />
+          </Form.Item>
         </div>
-    );
+        <Form.Item
+          label="Username"
+          className="user-edit-form-item"
+          name="username"
+          rules={[{ required: true, message: "Username is required!" }]}
+        >
+          <Input
+            placeholder="Your username"
+            className="user-edit-input"
+            disabled
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="E-mail"
+          className="user-edit-form-item"
+          name="email"
+          rules={[{ required: true, message: "Please input your e-mail!" }]}
+        >
+          <Input placeholder="Your e-mail" className="user-edit-input" />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          className="user-edit-form-item"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password
+            placeholder="Your password"
+            className="user-edit-input"
+          />
+        </Form.Item>
+
+        <div className="user-edit-button-container">
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+            className="user-edit-save-button"
+          >
+            Save Changes
+          </Button>
+        </div>
+      </Form>
+    </div>
+  );
 }
 
 export default UserEditForm;
