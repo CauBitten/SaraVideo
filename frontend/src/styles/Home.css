@@ -1,34 +1,53 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .home {
-    padding: 2rem;
+  padding: 2rem;
 }
 
 .SearchAndCreate {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    padding-bottom: 1.5rem;
-    border-bottom: 0.08rem solid #ccc;
-    box-sizing: border-box;
+  padding-bottom: 1.5rem;
+  border-bottom: 0.08rem solid #ccc;
+  box-sizing: border-box;
 }
 
 .createRepoButton {
-    padding: 0 1rem;
-    
-    background-color: rgb(50, 209, 50);
-    color: white;
+  padding: 0 1rem;
 
-    cursor: pointer;
+  background-color: rgb(50, 209, 50);
+  color: white;
 
-    border-radius: 0.5rem;
-    border: none;
-    box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  font-family: var(--font-family-medium);
 }
 
 .createRepoButton:hover {
-    box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0.2rem 0.2rem 0.6rem rgba(0, 0, 0, 0.5);
+  background-color: rgb(35, 145, 35);
+}
+
+.edit-profile-submit {
+  color: white;
+  font-size: 1.125rem;
+  font-family: "DM Sans Bold", sans-serif;
+  margin-top: 24px;
+  width: 13rem;
+  height: 2.1875rem;
+  background-color: #25dac5;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-profile-submit:hover {
+  background-color: #1fa595;
 }

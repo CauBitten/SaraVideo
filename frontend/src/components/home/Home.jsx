@@ -5,44 +5,39 @@ import SearchBar from "./SearchBox";
 import "../../styles/Home.css";
 
 function Home() {
-    
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleCreateRepoClick = () => {
-        navigate("/criar-repo");
-    };
+  const handleCreateRepoClick = () => {
+    navigate("/criar-repo");
+  };
 
-    const handleEditUserClick = () => {
-        navigate("/editar-usuario");
-    };
+  const handleEditUserClick = () => {
+    navigate("/editar-usuario");
+  };
 
-    return (
-        <div>
+  return (
+    <div>
+      <div>
+        <NavBar />
+      </div>
 
-            <div>
-                <NavBar />
-            </div>
+      <div className="home">
+        <div className="SearchAndCreate">
+          <SearchBar />
 
-            <div className="home">
-
-                <div className="SearchAndCreate">
-                    <SearchBar /> 
-
-                    <button onClick={handleCreateRepoClick} className="createRepoButton">
-                        Criar Repositório
-                    </button>
-                </div>
-                
-                <UserRepos />
-                
-                <button onClick={handleEditUserClick}>
-                    Editar Perfil
-                </button>
-
-            </div>
-
+          <button onClick={handleCreateRepoClick} className="createRepoButton">
+            Criar Repositório
+          </button>
         </div>
-    );
+
+        <UserRepos />
+
+        <button onClick={handleEditUserClick} className="edit-profile-submit">
+          Editar Perfil
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default Home;
