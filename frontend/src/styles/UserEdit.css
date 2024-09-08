@@ -26,11 +26,6 @@
   width: 100%;
 }
 
-.icone-user {
-  position: relative;
-  top: 3px;
-}
-
 /* Estilo dos Itens do Formulário */
 .user-edit-form-item {
   margin-bottom: 20px;
@@ -57,8 +52,13 @@
   font-size: 1.125rem;
   padding: 0.75rem 3rem;
   border-radius: 2rem;
-  background-color: var(--secondary-color);
+  background-color: #45ff8f;
   color: #fff;
+  margin-left: 480px;
+}
+
+.user-edit-save-button:hover {
+  background-color: #2ee675 !important;
 }
 
 /* Estilo do Contêiner do Formulário de Edição de Usuário */
@@ -86,4 +86,50 @@
 .back-button:hover {
   background-color: #1fa595;
   /* Cor de fundo ao passar o mouse */
+}
+
+.file-upload-box {
+  width: 6.25rem !important;
+  height: 6.25rem !important;
+  font-size: 4.5rem !important;
+  border-radius: 10px !important;
+}
+
+.plus-sign {
+  position: relative;
+  top: -0.5rem;
+}
+
+.custom-label {
+  font-family: var(--font-family-bold);
+  font-size: 1rem;
+}
+
+.form-user-info {
+  width: 100%;
+  display: flex;
+  border-bottom: 2px solid #d7d7d7;
+  margin-bottom: 30px;
+}
+
+#form-credentials {
+  border-bottom: 2px solid #d7d7d7;
+  width: 100%;
+}
+
+.form-direita {
+  margin-left: 40px;
+}
+.user-edit-input {
+  font-family: var(--font-family-medium);
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  background: #d9d9d9;
+  border: none;
+  width: 130%;
+}
+
+.user-edit-credentials {
+  width: 50%;
 }

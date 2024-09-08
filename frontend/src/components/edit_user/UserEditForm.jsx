@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import api from "../../api";
-import "../../styles/UserEdit.css"; 
+import "../../styles/UserEdit.css";
+import { UserOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
 function UserEditForm() {
   const [loading, setLoading] = useState(false);
+  const [fileName, setFileName] = useState(null);
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -38,10 +40,17 @@ function UserEditForm() {
     }
   };
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
+
   return (
     <div className="user-edit-form-container">
       <Title level={1} className="user-edit-form-title">
-        Edit Profile 
+        Edit Profile <UserOutlined />
       </Title>
       <Form
         form={form}
@@ -51,71 +60,80 @@ function UserEditForm() {
       >
         <div className="form-user-info">
           <Form.Item
-            label="Your Photo"
+            label={<span className="custom-label">Your Photo</span>}
             className="user-edit-form-item"
             name="photo"
-            valuePropName="file"
-            rules={[{ required: true, message: "Please upload your photo!" }]}
           >
-            <Input type="file" accept="image/*" className="user-edit-input" />
+            <div id="form-image">
+              <div
+                id="repository-image-caixa"
+                className="file-upload-box"
+                onClick={() => document.getElementById("file-input").click()}
+              >
+                <span className="plus-sign">{fileName ? fileName : "+"}</span>
+              </div>
+              <input
+                id="file-input"
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={handleFileUpload}
+              />
+            </div>
           </Form.Item>
 
-          <Form.Item
-            label="Full Name"
-            className="user-edit-form-item"
-            name="fullName"
-            rules={[
-              { required: true, message: "Please input your full name!" },
-            ]}
-          >
-            <Input placeholder="Your full name" className="user-edit-input" />
-          </Form.Item>
+          <div className="form-direita">
+            <Form.Item
+              label={<span className="custom-label">Full name</span>}
+              className="user-edit-form-item"
+              name="fullName"
+              rules={[
+                { required: true, message: "Please input your full name!" },
+              ]}
+            >
+              <Input placeholder="Your full name" className="user-edit-input" />
+            </Form.Item>
 
+            <Form.Item
+              label={<span className="custom-label">Username</span>}
+              className="user-edit-form-item"
+              name="username"
+              rules={[{ required: true, message: "Username is required!" }]}
+            >
+              <Input
+                placeholder="Your username"
+                className="user-edit-input"
+                disabled
+              />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div id="form-credentials">
           <Form.Item
-            label="Username (New)"
+            label={<span className="custom-label">E-mail</span>}
             className="user-edit-form-item"
-            name="newUsername"
-            rules={[{ required: true, message: "Username is required!" }]}
+            name="email"
+            rules={[{ required: true, message: "Please input your e-mail!" }]}
           >
             <Input
-              placeholder="Your new username"
-              className="user-edit-input"
+              placeholder="Your e-mail"
+              className="user-edit-input user-edit-credentials"
+            />
+          </Form.Item>
+
+          <Form.Item
+            label={<span className="custom-label">Password</span>}
+            className="user-edit-form-item"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password
+              placeholder="Your password"
+              className="user-edit-input user-edit-credentials"
             />
           </Form.Item>
         </div>
-        <Form.Item
-          label="Username"
-          className="user-edit-form-item"
-          name="username"
-          rules={[{ required: true, message: "Username is required!" }]}
-        >
-          <Input
-            placeholder="Your username"
-            className="user-edit-input"
-            disabled
-          />
-        </Form.Item>
-
-        <Form.Item
-          label="E-mail"
-          className="user-edit-form-item"
-          name="email"
-          rules={[{ required: true, message: "Please input your e-mail!" }]}
-        >
-          <Input placeholder="Your e-mail" className="user-edit-input" />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          className="user-edit-form-item"
-          name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input.Password
-            placeholder="Your password"
-            className="user-edit-input"
-          />
-        </Form.Item>
 
         <div className="user-edit-button-container">
           <Button
