@@ -1,21 +1,21 @@
 .repo-detail-container {
-    padding: 20px;
-    background-color: #f5f5f5;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
 
 .edit-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #1890ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #25dac5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .edit-button:hover {
-    background-color: #40a9ff;
+  background-color: #1fa595;
 }
