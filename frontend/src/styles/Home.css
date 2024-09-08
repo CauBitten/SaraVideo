@@ -46,6 +46,7 @@
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  line-height: 10px;
 }
 
 .edit-profile-submit:hover {

@@ -220,6 +220,10 @@ html {
   cursor: pointer;
 }
 
+.especial {
+  line-height: 10px;
+}
+
 .form-container .ant-input,
 .form-container .ant-input-password {
   height: 40px;

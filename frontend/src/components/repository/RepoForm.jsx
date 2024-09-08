@@ -66,7 +66,7 @@ function RepoForm({ route }) {
           You are creating a repository in your personal account.
         </div>
 
-        <button className="form-button" type="submit">
+        <button className="form-button especial" type="submit">
           Create Repository
         </button>
       </div>

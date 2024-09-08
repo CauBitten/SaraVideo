@@ -4,19 +4,19 @@ import { useParams } from "react-router-dom";
 import NavBar from "../NavBar";
 
 function EditRepo() {
-    const { id } = useParams();
+  const { id } = useParams();
 
-    return (
-        <div>
-            <div>
-                <NavBar />
-            </div>
-            <div>
-                <EditRepoForm />
-                <DeleteRepositoryButton repositoryId={id} />
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div>
+        <NavBar />
+      </div>
+      <div style={{ marginTop: "40px" }}>
+        <EditRepoForm />
+        <DeleteRepositoryButton repositoryId={id} />
+      </div>
+    </div>
+  );
 }
 
 export default EditRepo;
