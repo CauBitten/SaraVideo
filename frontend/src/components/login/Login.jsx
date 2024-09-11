@@ -3,7 +3,7 @@ import HomeImage from "../../static/home.jpeg";
 
 function Login() {
   return (
-    <div className="container">
+    <div>
       <h1 className="title">SaraVideo Manager</h1>
       <div className="row">
         <div className="col container-form">
@@ -14,7 +14,9 @@ function Login() {
             src={HomeImage}
             alt="Example"
             className="image"
-            style={{ height: "120%" }}
+            style={{
+              height: "120%",
+            }}
           />
         </div>
       </div>

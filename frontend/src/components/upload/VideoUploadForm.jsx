@@ -64,7 +64,11 @@ function VideoUploadForm({ route, onUploadSuccess }) {
           accept="video/*"
           onChange={handleFileChange}
         />
-        <button className="form-button-u" type="submit" disabled={loading}>
+        <button
+          className="form-button-u especial"
+          type="submit"
+          disabled={loading}
+        >
           {loading ? "Uploading..." : "Upload Video"}
         </button>
       </form>

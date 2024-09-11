@@ -3,7 +3,7 @@ import HomeImage from "../../static/home.jpeg";
 
 function Register() {
   return (
-    <div className="container">
+    <div>
       <h1 className="title">SaraVideo Manager</h1>
       <div className="row">
         <div className="col container-form">

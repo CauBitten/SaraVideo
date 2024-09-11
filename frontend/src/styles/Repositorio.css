@@ -72,6 +72,10 @@
   transition: background-color 0.3s;
 }
 
+.especial {
+  margin-left: -7px;
+}
+
 .selection-mode-btn:hover {
   background-color: #d9d9d9;
 }
