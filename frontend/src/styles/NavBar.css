@@ -35,7 +35,7 @@
   width: 25%;
 }
 
-.custom-menu-item {
+.custom-menu-item-over, .custom-menu-item-repo  {
   padding: 0;
   font-size: 1rem;
   font-family: "DM Sans";
@@ -57,4 +57,19 @@
 .selected {
   background-color: #e8e8e8;
   border-bottom: 0.2rem solid #583dff;
+}
+
+/* Sobrescreve o estilo de item selecionado */
+.ant-menu-item-selected {
+  background-color: transparent !important; /* Remove a cor de fundo quando o item está selecionado */
+}
+
+/* Sobrescreve o estilo de item ativo (quando clicado ou focado) */
+.ant-menu-item-active {
+  background-color: transparent !important; /* Remove a cor de fundo ao clicar ou focar */
+}
+
+/* Opcional: Remove o foco visual (outline) ao clicar no item */
+.ant-menu-item:focus {
+  outline: none !important; /* Remove o contorno ao focar */
 }

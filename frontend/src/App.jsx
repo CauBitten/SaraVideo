@@ -10,6 +10,7 @@ import Upload from "./components/upload/Upload";
 import EditRepo from "./components/edit_repository/EditRepo";
 import UserEdit from "./components/edit_user/UserEdit";
 import Video from "./components/video/Video";
+import Overview from "./components/overview/Overview";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/overview" element={<Overview />} />
         <Route path="/criar-repo" element={<CreateRepo />} />
         <Route path="/repositorios/:id" element={<RepoDetail />} />
         <Route path="/repositorios/:id/upload" element={<Upload />} />
