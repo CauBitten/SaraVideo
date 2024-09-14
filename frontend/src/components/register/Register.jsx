@@ -1,5 +1,5 @@
 import RegisterForm from "./RegisterForm";
-import HomeImage from "../../static/home.jpeg";
+import HomeImage from "/static/home.jpeg";
 
 function Register() {
   return (

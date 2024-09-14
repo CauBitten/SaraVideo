@@ -2,9 +2,9 @@ import UserRepos from "./UserRepos";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar";
 import SearchBar from "./SearchBox";
-import "../../styles/Home.css";
+import "../../styles/Repository.css";
 
-function Home() {
+function Repository() {
   const navigate = useNavigate();
 
   const handleCreateRepoClick = () => {
@@ -40,4 +40,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Repository;

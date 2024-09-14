@@ -1,5 +1,5 @@
 import LoginForm from "./LoginForm";
-import HomeImage from "../../static/home.jpeg";
+import HomeImage from "/static/home.jpeg";
 
 function Login() {
   return (

@@ -3,8 +3,8 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import NotFound from "./components/not_found/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-import CreateRepo from "./components/repository/CreateRepo";
-import Home from "./components/home/Home";
+import CreateRepo from "./components/create_repo/CreateRepo";
+import Repository from "./components/repository/Repository";
 import RepoDetail from "./components/repo_detail/RepoDetail";
 import Upload from "./components/upload/Upload";
 import EditRepo from "./components/edit_repository/EditRepo";
@@ -20,13 +20,13 @@ function App() {
           path="/"
           element={
             <ProtectedRoute>
-              <Home />
+              <Overview />
             </ProtectedRoute>
           }
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/overview" element={<Overview />} />
+        <Route path="/repository" element={<Repository />} />
         <Route path="/criar-repo" element={<CreateRepo />} />
         <Route path="/repositorios/:id" element={<RepoDetail />} />
         <Route path="/repositorios/:id/upload" element={<Upload />} />
