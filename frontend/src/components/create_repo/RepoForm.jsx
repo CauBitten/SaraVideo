@@ -18,7 +18,7 @@ function RepoForm({ route }) {
 
     try {
       const res = await api.post(route, { nome, descricao });
-      navigate("/");
+      navigate("/repository");
     } catch (error) {
       alert(error);
     } finally {
