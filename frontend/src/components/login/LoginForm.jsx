@@ -19,7 +19,7 @@ function LoginForm() {
       });
       localStorage.setItem(ACCESS_TOKEN, res.data.access);
       localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-      navigate("/");
+      navigate("/overview");
     } catch (error) {
       alert(error);
     } finally {

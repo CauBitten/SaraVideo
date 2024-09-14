@@ -11,19 +11,23 @@ import EditRepo from "./components/edit_repository/EditRepo";
 import UserEdit from "./components/edit_user/UserEdit";
 import Video from "./components/video/Video";
 import Overview from "./components/overview/Overview";
+import Landing from "./components/landing/Landing";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Overview />
-            </ProtectedRoute>
-          }
-        />
+        {/* Landing page*/}
+        <Route path="/" element={<Landing />} />
+
+        {/* Vai para Overview quando faz Login */}
+        <Route path="/overview" element={
+          <ProtectedRoute>
+            <Overview />
+          </ProtectedRoute>
+        } />
+
+        {/* Demais rotas */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/repository" element={<Repository />} />
@@ -33,6 +37,8 @@ function App() {
         <Route path="/repositorios/:id/edit" element={<EditRepo />} />
         <Route path="/videos/:id" element={<Video />} />
         <Route path="/editar-usuario" element={<UserEdit />} />
+
+        {/* Rota desconhecida */}
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>

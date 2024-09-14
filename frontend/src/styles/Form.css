@@ -277,6 +277,10 @@ html {
   font-size: 1.5rem;
 }
 
+.title:hover {
+  cursor: pointer;
+}
+
 .titulo-form {
   font-family: var(--font-family-bold);
   color: var(--primary-color);

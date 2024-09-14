@@ -13,7 +13,7 @@ const NavBar = () => {
 
   // Atualiza o estado com base na URL atual
   useEffect(() => {
-    if (location.pathname === '/') {
+    if (location.pathname === '/overview') {
       setSelectedKey('1'); // Define "Overview" como selecionado
     } else if (location.pathname === '/repository') {
       setSelectedKey('2'); // Define "Repositories" como selecionado
@@ -29,7 +29,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -43,7 +43,7 @@ const NavBar = () => {
         <Menu.Item
           key="1"
           className={`custom-menu-item-over ${selectedKey === '1' ? 'selected' : ''}`} // Adiciona a classe 'selected' condicionalmente
-          onClick={() => handleMenuClick('1', '/')} // Redireciona para overview e atualiza o estado
+          onClick={() => handleMenuClick('1', '/overview')} // Redireciona para overview e atualiza o estado
         >
           Overview
         </Menu.Item>

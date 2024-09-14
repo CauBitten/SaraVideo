@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "DM Sans Bold";
+    src: url(/fonts/DMSans_18pt-Bold.woff);
+}
+  
+@font-face {
+    font-family: "DM Sans";
+    src: url(/fonts/DMSans_18pt-Regular.woff);
+}
+  
+@font-face {
+    font-family: "DM Sans Medium";
+    src: url(/fonts/DMSans_18pt-Medium.woff);
+}
+  
+* {
+    margin: 0;
+    padding: 0;
+}
+  
+.custom-header {
+    padding: 0 2rem;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 0.15rem #f3f3f3;
+}
+  
+.custom-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+}
+  
+.custom-menu-item-login, .custom-menu-item-register  {
+    padding: 0;
+    font-size: 1rem;
+    font-family: "DM Sans";
+    color: #000 !important;
+    width: 50%;
+    text-align: center;
+}
+
+.logo {
+    width: 2rem;
+    height: 2rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

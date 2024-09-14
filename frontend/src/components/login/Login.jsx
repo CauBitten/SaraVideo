@@ -1,10 +1,20 @@
 import LoginForm from "./LoginForm";
 import HomeImage from "/static/home.jpeg";
+import { useNavigate } from "react-router-dom"; // Importa useLocation
 
 function Login() {
+  const navigate = useNavigate(); // Hook para navegação
+
+  const handleMenuClick = () => {
+    navigate("/"); // Redireciona para o caminho fornecido
+  };
+
   return (
     <div>
-      <h1 className="title">SaraVideo Manager</h1>
+      <a className="title" onClick={() => handleMenuClick()}>
+        SaraVideo Manager
+      </a>
+
       <div className="row">
         <div className="col container-form">
           <LoginForm />
