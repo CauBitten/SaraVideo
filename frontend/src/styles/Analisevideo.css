@@ -1,0 +1,51 @@
+.analise-container {
+    background: linear-gradient(135deg, #e0f7fa, #e0f2f1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid #b2dfdb;
+}
+
+.analise-container h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #004d40;
+    text-align: center;
+    border-bottom: 2px solid #00796b;
+    padding-bottom: 10px;
+}
+
+.analise-container p {
+    font-size: 18px;
+    color: #004d40;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.analise-container p span {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.analise-container p i {
+    margin-right: 10px;
+    color: #00796b;
+}
+
+/* Ícones para melhorar a visualização */
+.analise-container .violencia-icn {
+    color: #d32f2f;
+}
+
+.analise-container .nao-violencia-icn {
+    color: #388e3c;
+}
+
+.analise-container .time-icn {
+    color: #0288d1;
+}
+

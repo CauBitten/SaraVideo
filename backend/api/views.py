@@ -3,6 +3,7 @@ import shutil
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
+from rest_framework.exceptions import NotFound
 from rest_framework import generics, status
 from .serializers import (
     UserSerializer,
@@ -208,3 +209,23 @@ class MultipleVideoDeleteView(generics.GenericAPIView):
         videos.delete()
 
         return Response({'detail': 'Videos deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
+    
+ 
+class VideoAnaliseView(generics.RetrieveAPIView):
+    queryset = Analise.objects.all()
+    serializer_class = AnaliseSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        video_id = self.kwargs.get('video_id')
+        try:
+            # Tenta recuperar a análise associada ao vídeo específico
+            video = Video.objects.get(id=video_id)
+            analise = Analise.objects.get(video=video)
+        except Video.DoesNotExist:
+            raise NotFound(detail="Vídeo não encontrado.")
+        except Analise.DoesNotExist:
+            raise NotFound(detail="Análise não encontrada para o vídeo fornecido.")
+        
+        return analise
+

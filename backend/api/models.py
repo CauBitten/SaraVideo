@@ -1,3 +1,4 @@
+import random
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -50,10 +51,11 @@ class Video(models.Model):
             super().save(*args, **kwargs)  # Salva o objeto primeiro para garantir que `self.pk` esteja definido
             self.calculate_duration()
             self.generate_thumbnail()
+            self.create_analysis()  # Cria a análise automaticamente
             self.save()
-            
         else:
             super().save(*args, **kwargs)
+
 
     def calculate_duration(self):
         video_path = self.arquivo.path
@@ -85,7 +87,32 @@ class Video(models.Model):
         # Salvar a imagem na pasta de thumbnails
         thumb_file = ContentFile(thumb_io.getvalue(), filename)
         self.thumbnail.save(filename, thumb_file, save=False)
-        
+
+    def create_analysis(self):
+    # 50% de chance de marcar violência
+        violencia_ocorreu = random.choice([True, False])
+    
+        violencia_contra_mulher = False  # Definir valor inicial de sua escolha
+        duracao_violencia = None  # Definir valor inicial, se aplicável
+        comeco_violencia = None  # Definir valor inicial, se aplicável
+        final_violencia = None  # Definir valor inicial, se aplicável
+
+        if violencia_ocorreu:
+            # Defina aleatoriamente os parâmetros se a violência ocorrer
+            violencia_contra_mulher = random.choice([True, False])
+            comeco_violencia = "00:00:00"  # Exemplo de valor para o início da violência
+            final_violencia = "00:00:00"  # Exemplo de valor para o fim da violência
+            duracao_violencia = timedelta(minutes=1)  # Exemplo de duração de 1 minuto
+
+        # Criação da análise
+        Analise.objects.create(
+            video=self,
+            violencia_ocorreu=violencia_ocorreu,
+            violencia_contra_mulher=violencia_contra_mulher,
+            duracao_violencia=duracao_violencia,
+            comeco_violencia=comeco_violencia,
+            final_violencia=final_violencia
+        )
 
 class Analise(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='analise')

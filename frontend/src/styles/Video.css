@@ -7,13 +7,43 @@
     min-height: 80vh; /* Garante que o conteúdo fique centralizado verticalmente */
 }
 
-video {
-    width: 80%; /* Ajuste a largura do vídeo conforme necessário */
-    max-width: 800px; /* Limite a largura máxima do vídeo */
+.video-page-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.video-container {
+    flex: 1;
+    max-width: 60%; /* O vídeo ocupará 60% da largura */
+    padding-right: 20px;
+}
+
+.analise-container {
+    flex: 0.4;
+    background-color: #f9f9f9;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Espaço entre o vídeo e o botão de excluir */
 }
+
+.analise-container h2 {
+    margin-bottom: 10px;
+}
+
+.analise-container p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+video {
+    width: 100%; /* O vídeo se ajusta ao tamanho da coluna */
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 .video-container video {
     max-width: 100%;
@@ -51,5 +81,35 @@ video {
 
 .delete-button:hover {
     background-color: #ff1a1a;
+}
+
+.video-page-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.video-container {
+    flex: 1;
+    max-width: 60%; /* O vídeo ocupará 60% da largura */
+    padding-right: 20px;
+}
+
+.analise-container {
+    flex: 0.4;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.analise-container h2 {
+    margin-bottom: 10px;
+}
+
+.analise-container p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
 }
 

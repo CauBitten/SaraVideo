@@ -2,7 +2,7 @@ from django.urls import path
 
 from rest_framework.routers import SimpleRouter
 
-from .views import CreateUserView, CreateRepositorioView, CustomTokenObtainPairView, ListUserRepositorioView, RepositorioDetailView, VideoCreateView, RepositorioDeleteView, RepositorioUpdateView, UserProfileView, ListVideosInRepositoryView, VideoAPIView, VideoDeleteView, MultipleVideoDeleteView, UserListView
+from .views import CreateUserView, CreateRepositorioView, CustomTokenObtainPairView, ListUserRepositorioView, RepositorioDetailView, VideoCreateView, RepositorioDeleteView, RepositorioUpdateView, UserProfileView, ListVideosInRepositoryView, VideoAPIView, VideoDeleteView, MultipleVideoDeleteView, UserListView, VideoAnaliseView 
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     path('videos/<int:id>/', VideoAPIView.as_view(), name="video-detail"),
     path('videos/<int:pk>/delete/', VideoDeleteView.as_view(), name="video-delete"),
     path('videos/delete-multiple/', MultipleVideoDeleteView.as_view(), name="video-delete-multiple"),
+    path('videos/<int:video_id>/analise/', VideoAnaliseView.as_view(), name='video-analise'),
     path('profile/', UserProfileView.as_view(), name='perfil'),
     path('users/', UserListView.as_view(), name='user-list'),
 ]
