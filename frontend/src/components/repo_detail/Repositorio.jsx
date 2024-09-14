@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { MdSelectAll, MdClose } from "react-icons/md"; // Certifique-se de importar corretamente os ícones
 import api from "../../api";
 import "../../styles/Repositorio.css";
 import { Modal, Button } from "antd";
@@ -123,7 +123,7 @@ function Repositorio() {
         </Button>
 
         <button className="selection-mode-btn" onClick={toggleSelectionMode}>
-          <span className="especial">{isSelectionMode ? "✖" : "✔"}</span>
+          {isSelectionMode ? <MdClose size={24} /> : <MdSelectAll size={24} />}
         </button>
 
         {isSelectionMode && (
@@ -160,19 +160,32 @@ function Repositorio() {
                 className="video-checkbox"
                 checked={selectedVideos.includes(video.id)}
                 onChange={() => toggleVideoSelection(video.id)}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()} // Evita conflito ao clicar na checkbox
               />
             )}
-            <Link to={`/videos/${video.id}`} className="video-link">
-              {video.thumbnail && (
-                <img
-                  src={video.thumbnail}
-                  alt={`${video.titulo} thumbnail`}
-                  className="video-thumbnail"
-                />
-              )}
-              <h2>{video.titulo}</h2>
-            </Link>
+            {!isSelectionMode ? (
+              <Link to={`/videos/${video.id}`} className="video-link">
+                {video.thumbnail && (
+                  <img
+                    src={video.thumbnail}
+                    alt={`${video.titulo} thumbnail`}
+                    className="video-thumbnail"
+                  />
+                )}
+                <h2>{video.titulo}</h2>
+              </Link>
+            ) : (
+              <div className="video-link">
+                {video.thumbnail && (
+                  <img
+                    src={video.thumbnail}
+                    alt={`${video.titulo} thumbnail`}
+                    className="video-thumbnail"
+                  />
+                )}
+                <h2>{video.titulo}</h2>
+              </div>
+            )}
           </div>
         ))}
       </div>

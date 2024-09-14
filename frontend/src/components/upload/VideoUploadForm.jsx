@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,10 +5,17 @@ import "../../styles/Form.css";
 
 function VideoUploadForm({ route, onUploadSuccess }) {
   const { id: repositoryId } = useParams();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(""); // Estado inicial do título
   const [videoFile, setVideoFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  // Função para gerar o título baseado na data e hora atuais
+  const generateTitle = () => {
+    const now = new Date();
+    const formattedDate = now.toISOString().slice(0, 19).replace('T', ' '); // Formata como "YYYY-MM-DD HH:MM:SS"
+    return `Video ${formattedDate}`;
+  };
 
   const handleFileChange = (e) => {
     setVideoFile(e.target.files[0]);
@@ -19,14 +25,14 @@ function VideoUploadForm({ route, onUploadSuccess }) {
     e.preventDefault();
     setLoading(true);
 
-    if (!videoFile || !title) {
-      alert("Please fill all the fields and select a video file");
+    if (!videoFile) {
+      alert("Please select a video file");
       setLoading(false);
       return;
     }
 
     const formData = new FormData();
-    formData.append("titulo", title);
+    formData.append("titulo", title || generateTitle()); // Usa o título gerado se o estado estiver vazio
     formData.append("arquivo", videoFile);
 
     try {
@@ -57,6 +63,7 @@ function VideoUploadForm({ route, onUploadSuccess }) {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          placeholder="Leave blank to use default title"
         />
         <input
           className="form-input-u-video"

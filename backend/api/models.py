@@ -91,7 +91,7 @@ class Video(models.Model):
     def create_analysis(self):
     # 50% de chance de marcar violência
         violencia_ocorreu = random.choice([True, False])
-    
+        
         violencia_contra_mulher = False  # Definir valor inicial de sua escolha
         duracao_violencia = None  # Definir valor inicial, se aplicável
         comeco_violencia = None  # Definir valor inicial, se aplicável
@@ -100,9 +100,9 @@ class Video(models.Model):
         if violencia_ocorreu:
             # Defina aleatoriamente os parâmetros se a violência ocorrer
             violencia_contra_mulher = random.choice([True, False])
-            comeco_violencia = "00:00:00"  # Exemplo de valor para o início da violência
-            final_violencia = "00:00:00"  # Exemplo de valor para o fim da violência
-            duracao_violencia = timedelta(minutes=1)  # Exemplo de duração de 1 minuto
+            comeco_violencia = "00:01:00"  # Exemplo de valor para o início da violência
+            final_violencia = "00:02:00"  # Exemplo de valor para o fim da violência
+            duracao_violencia = self.duracao  # Exemplo de duração de 1 minuto
 
         # Criação da análise
         Analise.objects.create(
