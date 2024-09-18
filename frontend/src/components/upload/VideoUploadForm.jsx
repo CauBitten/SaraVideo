@@ -44,7 +44,6 @@ function VideoUploadForm({ route, onUploadSuccess }) {
             "Content-Type": "multipart/form-data",
           },
         });
-        alert(`Video ${i + 1} uploaded successfully!`);
       } catch (error) {
         alert(`Failed to upload video ${i + 1}.`);
         console.error("Error uploading the video:", error);
