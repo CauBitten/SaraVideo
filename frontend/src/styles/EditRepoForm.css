@@ -4,30 +4,26 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 40rem;
   margin: 0 auto;
-  padding: 20px;
+  padding: 1rem;
   background-color: #f9f9f9;
-  border-radius: 10px;
+  border-radius: 0.5rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"] {
   width: 100%;
-  padding: 10px;
+  padding: 0.5rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 0.25rem;
 }
 
 .button-group {
@@ -35,26 +31,13 @@
   justify-content: space-between;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #218838;
-}
-
 .rep-container {
-  padding: 10px 20px;
-  width: 780px;
+  padding: 0.5rem 1rem;
+  width: 50rem;
   margin: 0 auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .delete-repo-button {
@@ -70,41 +53,56 @@ button:hover {
 
 .titulo-container {
   font-family: var(--font-family-bold);
-  border-bottom: 2px solid #e2dfdf;
-  padding-bottom: 5px;
+  border-bottom: 0.125rem solid #e2dfdf;
+  padding: 0.25rem 0;
 }
 
 .input-edit {
-  height: 30px;
+  height: 2rem;
   width: 250px;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   outline: none;
   background: #d9d9d9;
   border: none;
-  padding-left: 10px;
+  padding-left: 0.5rem;
   font-family: var(--font-family-medium);
 }
 
 .botao-atualizar {
-  background-color: rgb(50, 209, 50);
+  background-color: rgb(50, 209, 201);
   font-family: var(--font-family-medium);
 }
 
 .botao-atualizar:hover {
-  background-color: rgb(35, 145, 35) !important;
+  background-color: rgb(31, 131, 126) !important;
 }
 
 .lista-colaboradores {
-  margin-top: -10px;
   font-family: var(--font-family-medium);
 }
 
 .botao-colab {
-  margin-left: 10px;
-  background-color: rgb(50, 209, 50);
+  background-color: rgb(50, 209, 201);
   font-family: var(--font-family-medium);
 }
 
 .botao-colab:hover {
-  background-color: rgb(35, 145, 35) !important;
+  background-color: rgb(31, 131, 126) !important;
+}
+
+.add_colab-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.desc-update-container {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+}
+
+.ant-list-item.colaborador {
+  padding: 0.5rem 0;
 }

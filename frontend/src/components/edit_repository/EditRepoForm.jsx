@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Form, Input, Button, Typography, List, notification } from "antd";
+import {  UserAddOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import api from "../../api";
 import "../../styles/EditRepoForm.css";
@@ -136,11 +137,13 @@ function EditRepoForm() {
       <Title className="titulo-container" level={2}>
         Editar Repositório
       </Title>
+
       <Form
         name="edit-repo"
         initialValues={{ nome: repo.nome, descricao: repo.descricao }}
         onFinish={handleSubmit}
       >
+
         <Form.Item
           name="nome"
           rules={[
@@ -153,36 +156,56 @@ function EditRepoForm() {
           <Input className="input-edit" placeholder="Nome do repositório" />
         </Form.Item>
 
-        <Form.Item name="descricao" rules={[{ required: false }]}>
-          <Input.TextArea
-            className="input-edit"
-            placeholder="Descrição do repositório"
-            style={{ width: "400px" }}
-          />
-        </Form.Item>
+          <div className="desc-update-container">
+          <Form.Item name="descricao" rules={[{ required: false }]}>
+            <Input.TextArea
+              className="input-edit"
+              placeholder="Descrição do repositório"
+              style={{ width: "30rem" }}
+            />
+          </Form.Item>
 
-        <Form.Item>
-          <Button
-            type="primary"
-            className="botao-atualizar"
-            htmlType="submit"
-            loading={loading}
-          >
-            Atualizar
-          </Button>
-        </Form.Item>
+          <Form.Item>
+            <Button
+              type="primary"
+              className="botao-atualizar"
+              htmlType="submit"
+              loading={loading}
+            >
+              Atualizar
+            </Button>
+          </Form.Item>
+          </div>
+
       </Form>
 
       <div>
         <Title className="titulo-container" level={2}>
           Colaboradores
         </Title>
+
+        <div className="add_colab-container">
+          <Input
+            placeholder="Digite o username"
+            className="input-edit"
+            value={newColaborador}
+            onChange={(e) => setNewColaborador(e.target.value)}
+          />
+          <Button
+            className="botao-colab"
+            type="primary"
+            onClick={handleAddColaborador}
+            loading={loading}
+            icon={<UserAddOutlined />}
+          />
+        </div>
+
         <List
           className="lista-colaboradores"
           itemLayout="horizontal"
           dataSource={repo.colaboradores || []}
           renderItem={(colaborador) => (
-            <List.Item>
+            <List.Item className="colaborador">
               <List.Item.Meta
                 title={colaborador.username}
                 description={colaborador.email || "E-mail não informado"}
@@ -190,20 +213,7 @@ function EditRepoForm() {
             </List.Item>
           )}
         />
-        <Input
-          placeholder="Digite o username"
-          className="input-edit"
-          value={newColaborador}
-          onChange={(e) => setNewColaborador(e.target.value)}
-        />
-        <Button
-          className="botao-colab"
-          type="primary"
-          onClick={handleAddColaborador}
-          loading={loading}
-        >
-          Adicionar Colaborador
-        </Button>
+        
       </div>
     </div>
   );
