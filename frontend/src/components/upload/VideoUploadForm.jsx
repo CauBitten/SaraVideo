@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import api from "../../api";
 import { useNavigate, useParams } from "react-router-dom";

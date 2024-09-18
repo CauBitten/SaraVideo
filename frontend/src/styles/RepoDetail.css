@@ -1,21 +1,18 @@
 .repo-detail-container {
-  padding: 20px;
   background-color: #f5f5f5;
+  height: 100dvh;
 }
 
 .edit-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #25dac5;
+  display: flex;
+  background-color: rgb(180, 180, 180);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   text-align: center;
-  text-decoration: none;
-  font-size: 16px;
 }
 
 .edit-button:hover {
-  background-color: #1fa595;
+  background-color: rgb(73, 73, 73) !important;
+  color: #fff !important; 
 }

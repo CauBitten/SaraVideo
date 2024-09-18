@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { MdSelectAll, MdClose } from "react-icons/md"; // Certifique-se de importar corretamente os ícones
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import api from "../../api";
 import "../../styles/Repositorio.css";
 import { Modal, Button } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import {  ExclamationCircleOutlined, UploadOutlined, CloseOutlined, 
+          CheckOutlined, SettingOutlined } from "@ant-design/icons";
 import VideoUploadForm from "../upload/VideoUploadForm";
 
 const { confirm } = Modal;
@@ -14,6 +15,7 @@ function Repositorio() {
   const [repositorio, setRepositorio] = useState(null);
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Hook para navegação
 
   const [isSelectionMode, setIsSelectionMode] = useState(false);
   const [selectedVideos, setSelectedVideos] = useState([]);
@@ -106,25 +108,40 @@ function Repositorio() {
     fetchVideos();
   };
 
+  const handleEdit = () => {
+    // Navega para a rota de edição do repositório
+    navigate(`/repositorios/${id}/edit`);
+  };
+
   if (loading) return <p>Carregando...</p>;
 
   if (!repositorio) return <p>Repositório não encontrado.</p>;
 
   return (
     <div className="repositorio-container">
-      <h1>Detalhes do Repositório - {repositorio.nome}</h1>
+      <h1>{repositorio.nome}</h1>
       <p>Descrição: {repositorio.descricao}</p>
       <p>Criado em: {new Date(repositorio.criado_em).toLocaleDateString()}</p>
       <p>Criador: {repositorio.criador.username}</p>
 
       <div className="repositorio-actions">
-        <Button className="upload-video-btn" type="primary" onClick={showModal}>
-          Upload Vídeo
-        </Button>
+        <Button 
+          className="edit-button" 
+          onClick={handleEdit} 
+          icon={<SettingOutlined />} 
+        />
 
-        <button className="selection-mode-btn" onClick={toggleSelectionMode}>
-          {isSelectionMode ? <MdClose size={24} /> : <MdSelectAll size={24} />}
-        </button>
+        <Button 
+          className="upload-video-btn" 
+          onClick={showModal} 
+          icon={<UploadOutlined />} 
+        />
+
+        <Button
+          icon={isSelectionMode ? <CloseOutlined /> : <CheckOutlined />}
+          onClick={toggleSelectionMode}
+          className="selection-mode-button"
+        />
 
         {isSelectionMode && (
           <button
@@ -203,6 +220,7 @@ function Repositorio() {
           onUploadSuccess={handleUploadSuccess}
         />
       </Modal>
+      
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Repositorio from "./Repositorio";
 import api from "../../api";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import NavBar from "../NavBar";
 import "../../styles/RepoDetail.css"; // Adicionando o CSS correspondente
 
@@ -35,14 +35,9 @@ function RepoDetail() {
   }
 
   return (
-    <div>
+    <div className="repo-detail-container">
       <NavBar />
-      <div className="repo-detail-container">
-        <Repositorio />
-        <Link to={`/repositorios/${id}/edit`} className="edit-button">
-          Editar Repositório
-        </Link>
-      </div>
+      <Repositorio />
     </div>
   );
 }
