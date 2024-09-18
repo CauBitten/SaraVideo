@@ -6,78 +6,76 @@ import "../../styles/Form.css";
 
 function VideoUploadForm({ route, onUploadSuccess }) {
   const { id: repositoryId } = useParams();
-  const [title, setTitle] = useState(""); // Estado inicial do título
-  const [videoFile, setVideoFile] = useState(null);
+  const [videoFiles, setVideoFiles] = useState([]); // Para armazenar múltiplos arquivos
   const [loading, setLoading] = useState(false);
+  const [currentUploadIndex, setCurrentUploadIndex] = useState(0);
   const navigate = useNavigate();
 
   // Função para gerar o título baseado na data e hora atuais
-  const generateTitle = () => {
+  const generateTitle = (index) => {
     const now = new Date();
-    const formattedDate = now.toISOString().slice(0, 19).replace('T', ' '); // Formata como "YYYY-MM-DD HH:MM:SS"
-    return `Video ${formattedDate}`;
+    const formattedDate = now.toISOString().slice(0, 19).replace('T', ' ');
+    return `Video - ${formattedDate}`;
   };
 
   const handleFileChange = (e) => {
-    setVideoFile(e.target.files[0]);
+    setVideoFiles(e.target.files); // Armazena múltiplos arquivos
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    if (!videoFile) {
-      alert("Please select a video file");
+    if (videoFiles.length === 0) {
+      alert("Please select at least one video file");
       setLoading(false);
       return;
     }
 
-    const formData = new FormData();
-    formData.append("titulo", title || generateTitle()); // Usa o título gerado se o estado estiver vazio
-    formData.append("arquivo", videoFile);
+    for (let i = 0; i < videoFiles.length; i++) {
+      const videoFile = videoFiles[i];
 
-    try {
-      await api.post(route, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      alert("Video uploaded successfully!");
-      if (onUploadSuccess) onUploadSuccess();
-      navigate(`/repositorios/${repositoryId}/`); // Navega de volta à página principal do repositório
-    } catch (error) {
-      alert("Failed to upload video.");
-      console.error("There was an error uploading the video:", error);
-    } finally {
-      setLoading(false);
+      const formData = new FormData();
+      formData.append("titulo", generateTitle(i)); // Usa um título gerado para cada arquivo
+      formData.append("arquivo", videoFile);
+
+      try {
+        await api.post(route, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } catch (error) {
+        alert(`Failed to upload video ${i + 1}.`);
+        console.error("Error uploading the video:", error);
+      }
     }
+
+    // Callback de sucesso e navegação
+    if (onUploadSuccess) onUploadSuccess();
+    navigate(`/repositorios/${repositoryId}/`);
+
+    setLoading(false);
   };
 
   return (
     <div id="form-page">
       <form onSubmit={handleSubmit} className="form-container-u">
-        <h1>Upload Video</h1>
-        <h4>Fill in the fields below with information about the video</h4>
-        <label>Video Title</label>
-        <input
-          className="form-input-u"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Leave blank to use default title"
-        />
+        <h1>Upload Multiple Videos</h1>
+        <h4>Select videos to upload</h4>
         <input
           className="form-input-u-video"
           type="file"
           accept="video/*"
           onChange={handleFileChange}
+          multiple // Permite a seleção de múltiplos arquivos
         />
         <button
           className="form-button-u especial"
           type="submit"
           disabled={loading}
         >
-          {loading ? "Uploading..." : "Upload Video"}
+          {loading ? "Uploading..." : "Upload Videos"}
         </button>
       </form>
     </div>
