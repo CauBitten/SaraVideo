@@ -11,10 +11,6 @@ function Repository() {
     navigate("/criar-repo");
   };
 
-  const handleEditUserClick = () => {
-    navigate("/editar-usuario");
-  };
-
   return (
     <div>
       <div>
@@ -31,10 +27,6 @@ function Repository() {
         </div>
 
         <UserRepos />
-
-        <button onClick={handleEditUserClick} className="edit-profile-submit">
-          Editar Perfil
-        </button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { Layout, Menu, Button } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { LogoutOutlined, EditOutlined } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom"; // Importa useLocation
 import { useState, useEffect } from "react"; // Importa useEffect para rastrear mudanças de rota
 import "../styles/NavBar.css"; // Adicione o CSS personalizado
@@ -32,6 +32,10 @@ const NavBar = () => {
     navigate("/");
   };
 
+  const handleEdit = () => {
+    navigate("/editar-usuario");
+  };
+
   return (
     <Header className="custom-header">
       <Menu
@@ -57,7 +61,14 @@ const NavBar = () => {
         </Menu.Item>
       </Menu>
 
-      <div className="custom-logout-container">
+      <div className="custom-container">
+        <Button
+          type="default"
+          icon={<EditOutlined />}
+          className="custom-edit-profile-button"
+          onClick={handleEdit}
+        />
+
         <Button
           type="default"
           icon={<LogoutOutlined />}
@@ -66,6 +77,7 @@ const NavBar = () => {
         >
           Logout
         </Button>
+
       </div>
     </Header>
   );

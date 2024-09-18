@@ -44,13 +44,20 @@
   text-align: center;
 }
 
-.custom-logout-button {
+.custom-container {
+  width: 10dvw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.custom-logout-button, .custom-edit-profile-button {
   color: black;
   border: none;
   background-color: #ebebeb;
 }
 
-.custom-logout-button:hover {
+.custom-logout-button:hover, .custom-edit-profile-button:hover {
   color: black !important;
 }
 
