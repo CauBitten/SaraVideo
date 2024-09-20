@@ -1,9 +1,12 @@
-import NavBarLanding from "./NavBarLanding.jsx"
+import NavBarLanding from "./NavBarLanding.jsx";
+import BodyLanding from "./BodyLanding.jsx";
+import "../../styles/Landing.css";
 
 function Landing() {
     return (
-        <div>
+        <div className="landing-container">
             <NavBarLanding />
+            <BodyLanding />
         </div>
     );
 }

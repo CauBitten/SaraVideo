@@ -1,0 +1,86 @@
+/* Fontes Personalizadas */
+@font-face {
+    font-family: "DM Sans Bold";
+    src: url(/fonts/DMSans_18pt-Bold.woff);
+}
+  
+@font-face {
+    font-family: "DM Sans";
+    src: url(/fonts/DMSans_18pt-Regular.woff);
+}
+  
+@font-face {
+    font-family: "DM Sans Medium";
+    src: url(/fonts/DMSans_18pt-Medium.woff);
+}
+  
+/* Variáveis de CSS */
+:root {
+    --font-family-bold: "DM Sans Bold", sans-serif;
+    --font-family-medium: "DM Sans Medium", sans-serif;
+    --font-family-regular: "DM Sans", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    height: 100dvh;
+    width: 100dvw;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: teal;
+}
+
+.title-container, .subtitle-container {
+    display: inline-block;
+    padding: .1rem;
+    text-align: center;
+}
+
+.title-container h1, .subtitle-container h3 {
+    letter-spacing: 0.3rem;
+    border-right: 0.1rem solid #fff;;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.title-container h1 {
+    font-family: var(--font-family-bold);
+    color: #fff;
+
+    animation: 
+        typing 3s steps(17),
+        cursor .5s step-end 3s 6 alternate,
+        removeCursor 0s 5s forwards;
+}
+
+.subtitle-container h3 {
+    font-family: var(--font-family-regular);
+    color: #fff;    
+
+    animation: 
+        typing 3s steps(54),
+        cursor .5s step-end 3s 6 alternate,
+        removeCursor 0s 5s forwards;
+}
+
+@keyframes cursor {
+    50% { border-color: transparent; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+}
+
+@keyframes removeCursor {
+    to { border-right: none; } /* Remove o border-right após a animação */
+}

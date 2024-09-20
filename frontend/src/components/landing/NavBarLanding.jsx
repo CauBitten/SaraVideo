@@ -1,6 +1,6 @@
 import { Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom"; // Importa useLocation
-import "../../styles/NavBarLanding.css"; // Adicione o CSS personalizado
+import "../../styles/NavBarLanding.css"; 
 
 const { Header } = Layout;
 
