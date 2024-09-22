@@ -24,7 +24,7 @@ function Register() {
             src={HomeImage}
             alt="Example"
             className="image"
-            style={{ height: "120%" }}
+            style={{ height: "200%" }}
           />
         </div>
       </div>

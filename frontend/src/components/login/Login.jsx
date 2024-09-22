@@ -25,7 +25,7 @@ function Login() {
             alt="Example"
             className="image"
             style={{
-              height: "120%",
+              height: "200%",
             }}
           />
         </div>
