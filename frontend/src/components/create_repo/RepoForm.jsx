@@ -52,15 +52,6 @@ function RepoForm({ route }) {
           />
         </div>
 
-        <div className="form-dropdown">
-          <label>Collaborators</label>
-          <select id="options" name="options">
-            <option value="option1">Collaborator 1</option>
-            <option value="option2">Collaborator 2</option>
-            <option value="option3">Collaborator 3</option>
-          </select>
-        </div>
-
         <div id="personal-alert">
           <span id="alert-i">i</span>
           You are creating a repository in your personal account.
@@ -70,24 +61,7 @@ function RepoForm({ route }) {
           Create Repository
         </button>
       </div>
-      <div id="repository-image">
-        <label>Repository Image</label>
-        <div
-          id="repository-image-caixa"
-          className="file-upload-box"
-          onClick={() => document.getElementById("file-input").click()}
-        >
-          +
-        </div>
-
-        <input
-          id="file-input"
-          type="file"
-          accept="image/*"
-          style={{ display: "none" }}
-          /* onChange={(e) => handleFileUpload(e)} */
-        />
-      </div>
+  
     </form>
   );
 }

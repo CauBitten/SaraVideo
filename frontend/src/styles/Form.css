@@ -41,6 +41,11 @@ html {
   height: 100%;
 }
 
+.form-container {
+  justify-content: center;
+  padding: 2rem;
+}
+
 /* Layout das Colunas */
 .row {
   width: 100%;
