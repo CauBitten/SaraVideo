@@ -1,10 +1,14 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import { FaTimesCircle, FaCheckCircle, FaClock } from 'react-icons/fa';
 import "../../styles/AnaliseVideo.css";
 
 function AnaliseVideo({ analise }) {
     if (!analise) {
-        return <p>Análise não disponível.</p>;
+        return (
+            <div className='analise-container'>
+                <p>Análise não disponível.</p>
+            </div>
+        );
     }
 
     return (

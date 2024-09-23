@@ -39,15 +39,20 @@ function Video() {
         <div>
             <NavBar />
             <div className="video-page-container">
+
                 <div className="video-container">
-                    <h1>{video.titulo}</h1>
+
+                    <h2>{video.titulo}</h2>
+
                     <video controls>
                         <source src={video.arquivo} type="video/mp4" />
+                        <source src={video.arquivo} type="video/avi" />
                         Seu navegador não suporta o elemento de vídeo.
                     </video>
-                    <p>{video.descricao}</p>
-                    <DeleteVideoButton videoId={videoId} repositoryId={video.repositorio} /> 
+
                 </div>
+
+                <DeleteVideoButton videoId={videoId} repositoryId={video.repositorio} /> 
                 <AnaliseVideo analise={analise} /> {/* Renderiza o componente de análise */}
             </div>
         </div>

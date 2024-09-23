@@ -1,4 +1,5 @@
 import random
+import requests
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -51,7 +52,7 @@ class Video(models.Model):
             super().save(*args, **kwargs)  # Salva o objeto primeiro para garantir que `self.pk` esteja definido
             self.calculate_duration()
             self.generate_thumbnail()
-            self.create_analysis()  # Cria a análise automaticamente
+            # self.create_analysis()  # Cria a análise automaticamente
             self.save()
         else:
             super().save(*args, **kwargs)
@@ -89,30 +90,54 @@ class Video(models.Model):
         self.thumbnail.save(filename, thumb_file, save=False)
 
     def create_analysis(self):
-    # 50% de chance de marcar violência
-        violencia_ocorreu = random.choice([True, False])
+        # URL da API
+        url = "http://ec2-54-219-26-123.us-west-1.compute.amazonaws.com/analyze/"
+
+        # Path do video
+        video_path = self.arquivo.path
+
+        if not video_path.endswith('.avi'):
+            raise IOError('Error: Only videos with the extension .avi are allowed.')
         
-        violencia_contra_mulher = False  # Definir valor inicial de sua escolha
-        duracao_violencia = None  # Definir valor inicial, se aplicável
-        comeco_violencia = None  # Definir valor inicial, se aplicável
-        final_violencia = None  # Definir valor inicial, se aplicável
+        elif os.path.getsize(video_path) > 50 * 1024 * 1024:
+            raise IOError("Error: The video exceeds the maximum allowed size of 50MB.")
+        
+        else:
+            try:
+                # Abrir o arquivo de vídeo em modo binário
+                with open(video_path, 'rb') as video_file:
 
-        if violencia_ocorreu:
-            # Defina aleatoriamente os parâmetros se a violência ocorrer
-            violencia_contra_mulher = random.choice([True, False])
-            comeco_violencia = "00:01:00"  # Exemplo de valor para o início da violência
-            final_violencia = "00:02:00"  # Exemplo de valor para o fim da violência
-            duracao_violencia = self.duracao  # Exemplo de duração de 1 minuto
+                    # Payload do arquivo com o nome 'video'
+                    files = {'video': video_file}
+            
+                    # Solicitação POST para a API
+                    response = requests.post(url, files=files)
+            
+                    # Verificar se a solicitação foi bem-sucedida
+                    response.raise_for_status()  # Levanta uma exceção se a resposta for um erro
+            
+                    # Processar a resposta da API 
+                    response_data = response.json()
+            
+                    violencia_ocorreu = response_data.get('has_violence', False)
+                    violencia_contra_mulher = response_data.get('has_woman', False)
+                    duracao_violencia = sum(response_data.get('violence_seconds', []))  # Soma a duração total da violência
+                    comeco_violencia = min(response_data.get('violence_seconds', [0]))  # Pega o primeiro segundo de violência
+                    final_violencia = max(response_data.get('violence_seconds', [0]))  # Pega o último segundo de violência
 
-        # Criação da análise
-        Analise.objects.create(
-            video=self,
-            violencia_ocorreu=violencia_ocorreu,
-            violencia_contra_mulher=violencia_contra_mulher,
-            duracao_violencia=duracao_violencia,
-            comeco_violencia=comeco_violencia,
-            final_violencia=final_violencia
-        )
+                    # Criar a análise com os dados da API
+                    Analise.objects.create(
+                        video=self,
+                        violencia_ocorreu=violencia_ocorreu,
+                        violencia_contra_mulher=violencia_contra_mulher,
+                        duracao_violencia=duracao_violencia,
+                        comeco_violencia=comeco_violencia,
+                        final_violencia=final_violencia
+                    )
+
+            except requests.exceptions.RequestException as e:
+                raise IOError(f"Error to send video: {e}")
+
 
 class Analise(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name='analise')
