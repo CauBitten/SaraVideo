@@ -2,6 +2,7 @@ import EditRepoForm from "./EditRepoForm";
 import DeleteRepositoryButton from "./DeleteRepoButton";
 import { useParams } from "react-router-dom";
 import NavBar from "../NavBar";
+import "../../styles/EditRepo.css"
 
 function EditRepo() {
   const { id } = useParams();
@@ -11,7 +12,7 @@ function EditRepo() {
       <div>
         <NavBar />
       </div>
-      <div style={{ marginTop: "40px" }}>
+      <div className="edit-repo-container" >
         <EditRepoForm />
         <DeleteRepositoryButton repositoryId={id} />
       </div>

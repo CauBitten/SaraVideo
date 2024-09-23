@@ -44,7 +44,10 @@
   font-family: var(--font-family-medium);
   color: white;
   background-color: #dc3545;
-  margin-left: 782px;
+  margin-left: 80rem;
+  margin-top: 3rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .delete-repo-button:hover {
