@@ -17,30 +17,44 @@
     margin: 0;
     padding: 0;
 }
+
+header.ant-layout-header.custom-header-css-dev-only-do-not-override-1gwfwyx {
+    margin: 0; 
+    padding: 0;
+}
+
+div.body {
+    margin: 0;
+}
   
 .custom-header {
-    padding: 0 2rem;
-    background-color: #f3f3f3;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid 0.15rem #f3f3f3;
+    margin: 0;
 }
   
 .custom-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f3f3f3;
+    background-color: #fff;
 }
   
 .custom-menu-item-login, .custom-menu-item-register  {
     padding: 0;
-    font-size: 1rem;
-    font-family: "DM Sans";
-    color: #000 !important;
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: "DM Sans Bold";
+    background-color: #FF6700;
+    color: #fff !important;
     width: 50%;
     text-align: center;
+}
+
+.custom-menu-item-login:hover, .custom-menu-item-register:hover  {
+    background-color: #d45500 !important;
 }
 
 .logo {
@@ -52,4 +66,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }

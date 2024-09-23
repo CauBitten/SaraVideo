@@ -5,7 +5,7 @@
 
 .edit-button {
   display: flex;
-  background-color: rgb(180, 180, 180);
+  background-color: #3c1cca;
   color: white;
   border: none;
   border-radius: 0.3rem;
@@ -13,6 +13,6 @@
 }
 
 .edit-button:hover {
-  background-color: rgb(73, 73, 73) !important;
+  background-color: #1e0e62 !important;
   color: #fff !important; 
 }

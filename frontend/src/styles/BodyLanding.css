@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: teal;
+    background-color: #EBEBEB;
 }
 
 .title-container, .subtitle-container {
@@ -47,7 +47,6 @@
 
 .title-container h1, .subtitle-container h3 {
     letter-spacing: 0.3rem;
-    border-right: 0.1rem solid #fff;;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
@@ -55,7 +54,8 @@
 
 .title-container h1 {
     font-family: var(--font-family-bold);
-    color: #fff;
+    border-right: 0.1rem solid #6096ba;
+    color: #6096ba;
 
     animation: 
         typing 3s steps(17),
@@ -65,7 +65,8 @@
 
 .subtitle-container h3 {
     font-family: var(--font-family-regular);
-    color: #fff;    
+    border-right: 0.1rem solid #FF6700;
+    color: #FF6700;    
 
     animation: 
         typing 3s steps(54),

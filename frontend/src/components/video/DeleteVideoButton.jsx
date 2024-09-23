@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 // Componente DeleteVideoButton.js
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import api from "../../api";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Video.css";
+import { DeleteOutlined } from "@ant-design/icons"
 
 function DeleteVideoButton({ videoId, repositoryId }) {  // Recebe o repositoryId como prop
     const navigate = useNavigate();
@@ -28,9 +29,7 @@ function DeleteVideoButton({ videoId, repositoryId }) {  // Recebe o repositoryI
     };
 
     return (
-        <Button className="delete-button" type="danger" onClick={handleDelete}>
-            Delete Video
-        </Button>
+        <DeleteOutlined className="delete-button" type="danger" onClick={handleDelete} />
     );
 }
 

@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 35.45rem;
+    margin: 2rem;
+    gap: 1rem;
+}
+
+.info-container{
+    height: 100%;
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.user-repos {
+    height: 100%;
+    width: 50%;
+}
+
+.user-title, .repo-title {
+    padding: 1rem 1rem 1.5rem 1rem;
+    border-bottom: 0.01rem solid #ccc;
+}
+
+.user-info {
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.username {
+    margin-top: 2rem;
+}
+
+.username, .email {
+    border: solid 0.1rem #ccc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}

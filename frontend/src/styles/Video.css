@@ -14,7 +14,6 @@
 
 .video-container {
     flex: 1;
-    max-width: 60%; /* O vídeo ocupará 60% da largura */
     padding-right: 1rem;
 }
 
@@ -22,7 +21,7 @@
     flex: 0.4;
     background-color: #f9f9f9;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -37,8 +36,8 @@
 }
 
 video {
-    max-width: 100%;
-    border-radius: 8px;
+    width: 100%;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -61,9 +60,9 @@ video {
 .delete-button {
     position: absolute;
     bottom: 1.5rem;
-    left: 2rem;
-    padding: 1rem;
-    background-color: #ff4d4d;
+    left: 1rem;
+    padding: 0.8rem;
+    background-color: #ff1010;
     color: white;
     border: none;
     border-radius: 0.25rem;
@@ -72,7 +71,7 @@ video {
 }
 
 .delete-button:hover {
-    background-color: #ff1a1a;
+    background-color: #b20101;
 }
 
 .video-page-container {

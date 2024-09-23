@@ -24,7 +24,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 0.15rem #f3f3f3;
 }
 
 .custom-menu {

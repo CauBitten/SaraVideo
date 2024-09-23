@@ -5,6 +5,7 @@
 
 .home {
   padding: 2rem;
+  min-height: 81.18dvh;
 }
 
 .SearchAndCreate {

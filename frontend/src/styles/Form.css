@@ -17,11 +17,11 @@
 /* Variáveis de CSS */
 :root {
   --primary-color: #1e0e62;
-  --secondary-color: #25dac5;
+  --secondary-color: #1e0e62;
   --font-color: #a1a1b0;
   --background-color: rgba(255, 255, 255, 0.8);
   --shadow-color: rgba(0, 0, 0, 0.1);
-  --border-radius: 10px;
+  --border-radius: 0.5rem;
   --font-family-bold: "DM Sans Bold", sans-serif;
   --font-family-medium: "DM Sans Medium", sans-serif;
   --font-family-regular: "DM Sans", sans-serif;
@@ -96,7 +96,7 @@ html {
   font-size: 6.625rem;
   color: #cdcdcd;
   background-color: #e7e7e7;
-  border-radius: 10px;
+  border-radius: 0.5rem;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
@@ -315,7 +315,7 @@ html {
   font-family: var(--font-family-medium);
   font-size: 1.125rem;
   padding: 1.0625rem 4.8125rem;
-  border-radius: 50px;
+  border-radius: 2rem;
   background-color: var(--secondary-color);
   width: 13.125rem;
   height: 3.75rem;
